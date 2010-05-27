@@ -51,7 +51,7 @@
 ;; Rinari
 (add-to-list 'load-path "~/.emacs.d/vendor/rinari")
 (require 'rinari)
-
+(global-set-key "\C-c\ \C-s" 'twittering-update-status-interactive)
 
 ;; sudo port install gnutls
 (add-to-list 'load-path "~/.emacs.d/vendor/emacs-jabber")
