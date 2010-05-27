@@ -52,6 +52,8 @@
 (add-to-list 'load-path "~/.emacs.d/vendor/rinari")
 (require 'rinari)
 
+
+;; sudo port install gnutls
 (add-to-list 'load-path "~/.emacs.d/vendor/emacs-jabber")
 (require 'jabber-autoloads)
 
