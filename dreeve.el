@@ -51,3 +51,11 @@
 ;; Rinari
 (add-to-list 'load-path "~/.emacs.d/vendor/rinari")
 (require 'rinari)
+
+(add-to-list 'load-path "~/.emacs.d/vendor/emacs-jabber")
+(require 'jabber-autoloads)
+
+(setq jabber-account-list
+    '(("dereknreeve@gmail.com" 
+       (:network-server . "talk.google.com")
+       (:connection-type . ssl))))
