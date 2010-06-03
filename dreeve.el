@@ -36,7 +36,9 @@
 
 (global-set-key "\C-cs" 'svn-status)
 ;; only in java-mode
-;; (define-key java-mode-map (kbd  "TAB") 'self-insert-command)
+(add-hook 'java-mode-hook (lambda () 
+	(define-key java-mode-map (kbd  "TAB") 'self-insert-command)))
+
 
 
 (add-to-list 'load-path "~/.emacs.d/vendor/jump.el")
@@ -61,3 +63,6 @@
     '(("dereknreeve@gmail.com" 
        (:network-server . "talk.google.com")
        (:connection-type . ssl))))
+
+
+(load "~/.emacs.d/custom_java.el")
