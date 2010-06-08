@@ -66,3 +66,12 @@
 
 
 (load "~/.emacs.d/custom_java.el")
+
+(add-to-list 'load-path "~/.emacs.d/vendor/yasnippet")
+(require 'yasnippet)
+
+(yas/initialize)
+(yas/load-directory "~/.emacs.d/vendor/yasnippet/snippets")
+(yas/load-directory "~/.emacs.d/vendor/yasnippets-rails")
+(make-variable-buffer-local 'yas/trigger-key)
+
