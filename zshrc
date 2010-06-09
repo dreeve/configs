@@ -22,6 +22,8 @@ export MANPATH=/opt/local/man:$MANPATH
 alias l="less -FRX"
 alias less="less -R"
 alias ack="ack --pager='less -FRX' --ignore-dir=tmp --ignore-dir=db --ignore-dir=log --ignore-dir=target"
+alias grep="ack --pager='less -FRX' --ignore-dir=tmp --ignore-dir=db --ignore-dir=log --ignore-dir=target"
+
 #alias ruby="/usr/bin/ruby"
 alias ls="ls --color"
 alias svn="colorsvn"
@@ -34,6 +36,7 @@ alias emacs_server="/Applications/Emacs.app/Contents/MacOS/Emacs --daemon"
 export ALTERNATE_EDITOR=""
 export EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c"
 alias postgres="/opt/local/lib/postgresql83/bin/postgres"
+alias oldgrep="/usr/bin/grep"
 
 export JAVA_HOME=/Library/Java/Home
 export CATALINA_HOME=/Library/Tomcat/Home
