@@ -1,0 +1,47 @@
+#+STARTUP: overview
+#+STARTUP: hidestars
+
+* General :visibility:
+| key       | function                  |
+|-----------+---------------------------|
+| C-u TAB   | Cycle visibility globally |
+| C-c C-x b | focus on tree             |
+
+
+* [[http://orgmode.org/org.html#Tags][Tags]]
+| key     | function                                         |
+|---------+--------------------------------------------------|
+| C-c \   | find headlines matching search in file           |
+| C-c a m | create a global list of tags in all agenda files |
+| C-c C-q | Enter new tags for the current headline          |
+
+
+* [[http://orgmode.org/org.html#Hyperlinks][Links]]
+| key         | function      |
+|-------------+---------------|
+| C-c C-l     | insert a link |
+| C-u C-c C-l | link to file  |
+| C-c C-o     | open link     |
+
+
+* [[http://orgmode.org/org.html#TODO-Items][Todo]]
+| key     | function                     |
+|---------+------------------------------|
+| C-c C-t | Todo -> Done -> unmarked     |
+| C-c C-v | search for TODOs within file |
+| C-c a t | find todos in [[agenda]] files   |
+
+
+* [[http://orgmode.org/org.html#Agenda-Views][Agenda]]
+  :PROPERTIES:
+  :CUSTOM_ID: agenda
+  :END:
+| key   | function                                                       |
+|-------+----------------------------------------------------------------|
+| C-c [ | Add current file to list of agenda files or move it to the top |
+| C-c ] | Remove current file from list of agenda files                  |
+| C-c , | cycle through agenda file list                                 |
+
+
+
+* [[http://orgmode.org/org.html#Properties-and-Columns][Properties]]

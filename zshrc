@@ -1,24 +1,21 @@
+# Path to your oh-my-zsh configuration.
+export ZSH=$HOME/.oh-my-zsh
+
+# Set to the name theme to load.
+# Look in ~/.oh-my-zsh/themes/
+export ZSH_THEME="derek"
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Example format: plugins=(rails git textmate ruby lighthouse)
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
+# Customize to your needs...
+
 ### zsh setup
-autoload -U compinit
-compinit
-
-zstyle ':completion:*' menu select
-
-autoload -U promptinit
-promptinit
-
 local WORDCHARS=${WORDCHARS//\//}  # add slash to word characters
 
-# share command history between shells
-setopt share_history  
-HISTSIZE=1000 
-SAVEHIST=1000 
-HISTFILE=~/.history
-setopt APPEND_HISTORY
-setopt INC_APPEND_HISTORY      # write after each command
-
-
-PS1=$'%{\e[33;1m%}%n@%{\e[37;1m%}%m %{\e[37;1m%}%~ \$ %{\e[0m%}'
 export PATH="/usr/local/sbin:/usr/local/mysql/bin:/opt/local/bin:/opt/local/sbin:/usr/local/git/bin:/usr/local/bin:/opt/local/lib/postgresql83/bin:/usr/local/apache-maven/bin:$PATH" 
 export MANPATH=/opt/local/man:$MANPATH
 export ALTERNATE_EDITOR=""
