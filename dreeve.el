@@ -97,3 +97,11 @@
 (load "~/.emacs.d/vendor/autopair.el")
 (require 'autopair)
 (autopair-global-mode) ;; enable autopair in all buffers 
+
+;; Don't retrieve avatars for jabber users
+(setq jabber-vcard-avatars-retrieve nil)
+
+(defun switch-to-previous-buffer ()
+      (interactive)
+      (switch-to-buffer (other-buffer)))
+(global-set-key [f1] 'switch-to-previous-buffer)
