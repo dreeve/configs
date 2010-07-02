@@ -1,0 +1,4 @@
+* http://code.google.com/p/selenium/downloads/list
+
+* to run on OSX Snow Leopard
+** java -jar selenium-server-standalone-2.0a2.jar (currently located in ~/Downloads)
