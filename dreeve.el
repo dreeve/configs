@@ -105,3 +105,9 @@
       (interactive)
       (switch-to-buffer (other-buffer)))
 (global-set-key [f1] 'switch-to-previous-buffer)
+
+(load "~/.emacs.d/vendor/highlight-symbol.el")
+(require 'highlight-symbol)
+
+(global-set-key (kbd "C-#") 'highlight-symbol-next)
+(global-set-key (kbd "C-*") 'highlight-symbol-prev)
