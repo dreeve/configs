@@ -31,6 +31,13 @@
 | C-c C-v | search for TODOs within file |
 | C-c a t | find todos in [[agenda]] files   |
 
+** checkboxes
+*** create a [[http://www.gnu.org/software/emacs/manual/html_node/org/Plain-lists.html#Plain-lists][plain list]] (list with items starting with -, +, or a number )
+*** [ ]
+*** C-c C-c toggles the checkbox
+*** M-s-<ret> creates another checkbox on the next line
+
+
 
 * [[http://orgmode.org/org.html#Agenda-Views][Agenda]]
   :PROPERTIES:
