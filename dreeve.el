@@ -111,5 +111,9 @@
 (load "~/.emacs.d/vendor/highlight-symbol.el")
 (require 'highlight-symbol)
 
+;;(add-to-list 'load-path "~/.emacs.d/vendor/hideshow-org")
+;;(require 'hideshow-org)
+;;(add-hook 'java-mode-hook 'hs-org/minor-mode)
+
 (global-set-key (kbd "C-x *") 'highlight-symbol-next)
 (global-set-key (kbd "C-*") 'highlight-symbol-prev)
