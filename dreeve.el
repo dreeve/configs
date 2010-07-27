@@ -29,7 +29,7 @@
 
 (setq org-tag-alist '(("bug" . ?b) ("config" . ?c) ("maintenance" . ?m) ("planning" . ?p)))
 
-(load "~/.emacs.d/vendor/twittering-mode/twittering-mode.el")
+(load "~/.emacs.d/vendor/twittering-mode-xwl/twittering-mode.el")
  (require 'twittering-mode)
  (setq twittering-username "derekreeve")
 
@@ -106,8 +106,10 @@
       (switch-to-buffer (other-buffer)))
 (global-set-key [f1] 'switch-to-previous-buffer)
 
+(add-hook 'java-mode-hook 'hs-minor-mode)
+(global-set-key (kbd "C-;") 'hs-toggle-hiding)
 (load "~/.emacs.d/vendor/highlight-symbol.el")
 (require 'highlight-symbol)
 
-(global-set-key (kbd "C-#") 'highlight-symbol-next)
+(global-set-key (kbd "C-x *") 'highlight-symbol-next)
 (global-set-key (kbd "C-*") 'highlight-symbol-prev)
