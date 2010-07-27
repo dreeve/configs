@@ -14,6 +14,8 @@
 | get file's current directory | M-x pwd |
 |------------------------------+---------|
 | bury buffer                  | C-c y   |
+|------------------------------+---------|
+| search and replace           | M-%     |
 
 * Capitalization
 | what                 | keys    |
