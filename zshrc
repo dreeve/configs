@@ -15,7 +15,6 @@ zstyle ':completion:*:match:*' original only
 zstyle ':completion:*:approximate:*' max-errors 1 numeric
 
 setopt prompt_subst
-
 local WORDCHARS=${WORDCHARS//\//}
 setopt share_history 
 HISTSIZE=1000 
@@ -23,7 +22,6 @@ SAVEHIST=1000
 HISTFILE=~/.history
 setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY      # write after each command
-
 
 ##################
 # BEGIN FUNCTIONS
@@ -52,8 +50,11 @@ function detect_git_dirty {
 
 PROMPT="%{$fg_bold[yellow]%}%n@%{$fg_bold[white]%}%m %~ \$ %{$reset_color%}"
 RPROMPT='$(detect_rvm_version) %{$fg[cyan]%}$(detect_git_branch)%{$reset_color%}'
+
 export PATH="/usr/local/sbin:/usr/local/mysql/bin:/opt/local/bin:/opt/local/sbin:/usr/local/git/bin:/usr/local/bin:/opt/local/lib/postgresql83/bin:/usr/local/apache-maven/bin:$PATH" 
 export MANPATH=/opt/local/man:$MANPATH
+export ALTERNATE_EDITOR=""
+export EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c"
 
 export LS_COLORS="no=00:fi=00;32:di=01;37:ln=01;36:ex=01;31\
 :*.txt=01;33:*.TXT=01;33:*.rtf=01;33:*.RTF=01;33:*.doc=00;36:*.DOC=00;36:*.pdf=01;33:*.PDF=01;33\
@@ -67,9 +68,12 @@ export LS_COLORS="no=00:fi=00;32:di=01;37:ln=01;36:ex=01;31\
 :*.tar=00;31;46:*.TAR=00;31;46:*.gz=00;30;46:*.GZ=00;30;46"
 
 alias l="less -FRX"
-alias less="less -R"
+alias less="less -FRX"
+alias ls="ls --color"
+
 alias ack="ack --pager='less -FRX' --ignore-dir=tmp --ignore-dir=db --ignore-dir=log --ignore-dir=target"
 alias grep="ack --pager='less -FRX' --ignore-dir=tmp --ignore-dir=db --ignore-dir=log --ignore-dir=target"
+alias oldgrep="/usr/bin/grep"
 
 alias ls="ls --color"
 alias svns="svn status"

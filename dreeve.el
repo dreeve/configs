@@ -4,7 +4,12 @@
 
 (color-theme-initialize)
 ;; set the color theme here:
-(color-theme-clarity)
+;;(color-theme-clarity)
+;;(color-theme-dark-laptop)
+;;(color-theme-aalto-dark)
+(color-theme-lethe)
+
+(setq ns-pop-up-frames nil)
 
 (global-set-key "\C-cr" 'org-remember)
 
@@ -24,7 +29,7 @@
 
 (setq org-tag-alist '(("bug" . ?b) ("config" . ?c) ("maintenance" . ?m) ("planning" . ?p)))
 
-(load "~/.emacs.d/vendor/twittering-mode/twittering-mode.el")
+(load "~/.emacs.d/vendor/twittering-mode-xwl/twittering-mode.el")
  (require 'twittering-mode)
  (setq twittering-username "derekreeve")
 
@@ -32,6 +37,7 @@
 (require 'recentf)
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
+(setq kill-whole-line 1)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
 (global-set-key "\C-cs" 'svn-status)
@@ -75,3 +81,39 @@
 (yas/load-directory "~/.emacs.d/vendor/yasnippets-rails")
 (make-variable-buffer-local 'yas/trigger-key)
 
+(setq find-program "/usr/local/bin/ack")
+
+
+(defun ack ()
+  "grep the whole directory for something defaults to term at cursor position"
+  (interactive)
+  (setq default (thing-at-point 'symbol))
+  (setq needle (or (read-string (concat "ack for <" default "> ")) default))
+  (setq needle (if (equal needle "") default needle))
+  (grep (concat "ack " needle " *")))
+(global-set-key (kbd "C-x j") 'ack)
+
+;;(add-to-list 'load-path "~/.emacs.d/vendor/autopair")
+(load "~/.emacs.d/vendor/autopair.el")
+(require 'autopair)
+(autopair-global-mode) ;; enable autopair in all buffers 
+
+;; Don't retrieve avatars for jabber users
+(setq jabber-vcard-avatars-retrieve nil)
+
+(defun switch-to-previous-buffer ()
+      (interactive)
+      (switch-to-buffer (other-buffer)))
+(global-set-key [f1] 'switch-to-previous-buffer)
+
+(add-hook 'java-mode-hook 'hs-minor-mode)
+(global-set-key (kbd "C-;") 'hs-toggle-hiding)
+(load "~/.emacs.d/vendor/highlight-symbol.el")
+(require 'highlight-symbol)
+
+;;(add-to-list 'load-path "~/.emacs.d/vendor/hideshow-org")
+;;(require 'hideshow-org)
+;;(add-hook 'java-mode-hook 'hs-org/minor-mode)
+
+(global-set-key (kbd "C-x *") 'highlight-symbol-next)
+(global-set-key (kbd "C-*") 'highlight-symbol-prev)

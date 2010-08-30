@@ -1,0 +1,89 @@
+* General
+| what                         | keys    |
+|------------------------------+---------|
+| bookmark                     | C-x r m |
+| go to bookmark               | C-x r b |
+| list bookmarks               | C-x r l |
+|------------------------------+---------|
+| go to tag                    | M-.     |
+|------------------------------+---------|
+| go to line                   | M-g g   |
+|------------------------------+---------|
+| join lines                   | M-^     |
+| create new line              | C-j     |
+| get file's current directory | M-x pwd |
+|------------------------------+---------|
+| bury buffer                  | C-c y   |
+|------------------------------+---------|
+| search and replace           | M-%     |
+
+* Capitalization
+| what                 | keys    |
+|----------------------+---------|
+| Capitalize word      | M-c     |
+| Upcase word/region   | C-x C-u |
+| downcase word/region | C-x C-l |
+|                      |         |
+
+
+* CUA
+| what                                            | keys |
+|-------------------------------------------------+------|
+| add space to left side of rectangle             | M-o  |
+| fill rectangle with blanks (erases contents)    | M-b  |
+| close rectangle by removing blanks at L edge    | M-c  |
+| fill rectangle with single (repeated) character | M-f  |
+| kill rectangle                                  | M-k  |
+| yank rectangle                                  | M-m  |
+| downcase rectangle                              | M-l  |
+| upcase rectangle                                | M-u  |
+| increase number on left edge (+1 by default)    | M-i  |
+| fill lines with increasing numbers (prompt)     | M-n  |
+| replace regex by string in rectangle            | M-r  |
+| reverse rectangle                               | M-R  |
+| fill rectangle with string (prompt)             | M-s  |
+
+
+* SVN
+| status    | C-c s       | 
+** file  
+| Diff file | C-x M-s f = |
+| Revert    | C-x M-s f r |
+| Blame     | C-x M-s f b |
+| Status    | C-c s       |
+** Status Buffer
+| go to parent directory | ^      |
+| enter directory        | RETURN |
+| add                    | a      |
+| diff                   | =      |
+| commit                 | c      |
+| update                 | U      |
+| revert                 | r      |
+| mark                   | m      |
+| unmark                 | u      |
+
+* yasnippets
+| keyword | what                                                 |
+|---------+------------------------------------------------------|
+|         | ruby files                                           |
+|---------+------------------------------------------------------|
+| flsh    | flash[: ... ]                                        |
+| logi    | logger.info "..."                                    |
+| par     | params[:...]                                         |
+| ra      | render :action => "..."                              |
+| rea     | redirect_to :action => "..."                         |
+| rec     | redirect_to :controller => "..."                     |
+| ses     | session[:...]                                        |
+|---------+------------------------------------------------------|
+|         | rhtml                                                |
+|---------+------------------------------------------------------|
+| %       | <% -%>                                               |
+| %%      | <%= %>                                               |
+| %h      | <%=h ... %>                                          |
+| %if     | <% if ... -%><% end -%>                              |
+| %ifel   | <% if ... -%><% else %> <% end -%>                   |
+| %lia    | <%= link_to "...", :action => "..." %>               |
+| %liai   | <%= link_to "...", :action => "...", :id => "..." %> |
+| %lic    | <%= link_to "...", :controller => "..." %>           |
+| %rp     | <%= render(:partial => ...) %>                       |
+
