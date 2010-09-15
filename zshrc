@@ -77,11 +77,16 @@ alias oldgrep="/usr/bin/grep"
 
 alias ls="ls --color"
 alias svns="svn status"
+alias gst="git status"
 #alias diff="colordiff -ar --exclude=.svn"
 alias emacs="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c"
 alias emacs_server="/Applications/Emacs.app/Contents/MacOS/Emacs --daemon"
 export ALTERNATE_EDITOR=""
 export EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c"
 alias oldgrep="/usr/bin/grep"
+
+alias la="cd ~/projects/theunsung/ror"
+
+export RSPEC=true
 
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
