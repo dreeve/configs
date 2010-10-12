@@ -1,3 +1,5 @@
+(server-mode)
+
 (push "/usr/local/bin/" exec-path)
 
 (setq c-basic-offset 2)
@@ -9,6 +11,12 @@
 (global-set-key (kbd "RET") 'newline-and-indent)
 (setq c-default-style '"cc-mode")
 
+(add-to-list 'load-path
+             "~/.emacs.d/vendor/yasnippet")
+(require 'yasnippet)
+(yas/initialize)
+(yas/load-directory "~/.emacs.d/vendor/yasnippet/snippets")
+
 ;; color themes
 (load "~/.emacs.d/vendor/color-theme/color-theme.el")
 (color-theme-initialize)
@@ -18,7 +26,7 @@
 
 (load "~/.emacs.d/vendor/autopair.el")
 (require 'autopair)
-(autopair-global-mode) ;; enable autopair in all buffers 
+(autopair-global-mode 1) ;; enable autopair in all buffers 
 
 ;; highlight the current line; set a custom face, so we can
 ;; recognize from the normal marking (selection)
@@ -26,18 +34,12 @@
 (setq hl-line-face 'hl-line)
 (global-hl-line-mode t) ; turn it on for all modes by default
 
-;; Rinari
-(add-to-list 'load-path "~/.emacs.d/vendor/rinari")
-(require 'rinari)
-
-(add-hook 'ruby-mode-hook (flyspell-mode 0))
+;;(add-hook 'ruby-mode-hook (flyspell-mode 0))
 (add-hook 'ruby-mode-hook 'turn-off-auto-fill)
 
 ;; Magit
 (require 'magit)
 (require 'egg)
-
-;;(add-to-list 'load-path "~/.emacs.d/vendor/org.el")
 
 ;; Remember
 (add-to-list 'load-path "~/.emacs.d/vendor/remember")
@@ -88,19 +90,13 @@
 (add-hook 'html-mode-hook 'turn-off-auto-fill)
 (setq kill-whole-line t)
 
-(defun switch-to-previous-buffer ()
-      (interactive)
-      (switch-to-buffer (other-buffer)))
-(global-set-key [f1] 'switch-to-previous-buffer)
-
 ;; peeopen
 (add-to-list 'load-path "~/.emacs.d/vendor/textmate.el")
 (require 'textmate)
 ;;(add-to-list 'load-path "~/.emacs.d/vendor/peepopen.el")
 (add-to-list 'load-path "~/.emacs.d/vendor/")
 (require 'peepopen)
-(textmate-mode)
-
+(textmate-mode 1)
 (setq ns-pop-up-frames nil)
 
 (load "~/.emacs.d/vendor/highlight-symbol.el")
@@ -108,7 +104,35 @@
 (global-set-key (kbd "C-x *") 'highlight-symbol-next)
 (global-set-key (kbd "C-*") 'highlight-symbol-prev)
 
-(add-to-list 'load-path "~/.emacs.d/vendor/yasnippet")
-(require 'yasnippet)
-(yas/initialize)
-(yas/load-directory "~/.emacs.d/vendor/yasnippet/snippets")
+
+(setq ffap-machine-p-known 'accept)  ; no pinging in C-x C-f
+(setq ffap-url-regexp nil)
+
+;; Rinari
+(add-to-list 'load-path "~/.emacs.d/vendor/rinari")
+(require 'rinari)
+
+
+(defun switch-to-previous-buffer ()
+      (interactive)
+      (switch-to-buffer (other-buffer)))
+(global-set-key [f1] 'switch-to-previous-buffer)
+
+
+(add-to-list 'load-path "~/.emacs.d/vendor")
+;;(require 'auto-complete-config)
+;;(add-to-list 'ac-dictionary-directories "~/.emacs.d/vendor/ac-dict")
+;;(ac-config-default)
+
+(add-to-list 'load-path "~/.emacs.d/vendor/haml-mode.el")
+(require 'haml-mode)
+(setq haml-backspace-backdents-nesting nil)
+
+(require 'undo-tree)
+(global-undo-tree-mode)
+
+(global-set-key "\C-x\C-m" 'execute-extended-command)
+(global-set-key "\C-c\C-m" 'execute-extended-command)
+
+(add-to-list 'load-path "~/.emacs.d/vendor/mysql.el")
+(require 'mysql)
