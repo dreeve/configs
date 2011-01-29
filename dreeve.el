@@ -117,3 +117,9 @@
 
 (global-set-key (kbd "C-x *") 'highlight-symbol-next)
 (global-set-key (kbd "C-*") 'highlight-symbol-prev)
+
+(add-to-list 'load-path "~/.emacs.d/vendor/bookmark+")
+(require 'bookmark+)
+
+(bookmark-bmenu-list)
+(switch-to-buffer "*Bookmark List*")
