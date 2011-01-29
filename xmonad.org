@@ -1,0 +1,6 @@
+* http://www.haskell.org/haskellwiki/Xmonad/Using_xmonad_on_Apple_OSX
+* install ghc
+* instal cabal
+* install dmenu
+* install emacs23 (./configure --with-x --no-gif)
+* install xquartz

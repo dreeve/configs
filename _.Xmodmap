@@ -1,0 +1,6 @@
+clear Mod2
+clear Mod4
+keycode 66 = Meta_L
+keycode 63 = Super_L
+add Mod2 = Meta_L
+add Mod4 = Super_L
