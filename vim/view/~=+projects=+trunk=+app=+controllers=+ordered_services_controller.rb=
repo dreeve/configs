@@ -1,0 +1,216 @@
+let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
+argglobal
+let s:cpo_save=&cpo
+set cpo&vim
+nmap <buffer> gf <Plug>RailsTabFind
+nmap <buffer> f <Plug>RailsSplitFind
+nnoremap <buffer> <silent> g} :exe        "ptjump =RubyCursorIdentifier()"
+nnoremap <buffer> <silent> } :exe          "ptag =RubyCursorIdentifier()"
+nnoremap <buffer> <silent> g] :exe      "stselect =RubyCursorIdentifier()"
+nnoremap <buffer> <silent> g :exe        "stjump =RubyCursorIdentifier()"
+nnoremap <buffer> <silent>  :exe v:count1."stag =RubyCursorIdentifier()"
+nnoremap <buffer> <silent> ] :exe v:count1."stag =RubyCursorIdentifier()"
+nnoremap <buffer> <silent>  :exe  v:count1."tag =RubyCursorIdentifier()"
+nmap <buffer> [f <Plug>RailsAlternate
+nmap <buffer> ]f <Plug>RailsRelated
+nmap <buffer> gf <Plug>RailsFind
+nnoremap <buffer> <silent> g] :exe       "tselect =RubyCursorIdentifier()"
+nnoremap <buffer> <silent> g :exe         "tjump =RubyCursorIdentifier()"
+nnoremap <buffer> <silent> <Plug>RailsTabFind :RTfind
+nnoremap <buffer> <silent> <Plug>RailsVSplitFind :RVfind
+nnoremap <buffer> <silent> <Plug>RailsSplitFind :RSfind
+nnoremap <buffer> <silent> <Plug>RailsFind :REfind
+nnoremap <buffer> <silent> <Plug>RailsRelated :R
+nnoremap <buffer> <silent> <Plug>RailsAlternate :A
+let &cpo=s:cpo_save
+unlet s:cpo_save
+setlocal noautoindent
+setlocal balloonexpr=RubyBalloonexpr()
+setlocal nobinary
+setlocal bufhidden=
+setlocal buflisted
+setlocal buftype=
+setlocal nocindent
+setlocal cinkeys=0{,0},0),:,0#,!^F,o,O,e
+setlocal cinoptions=
+setlocal cinwords=if,else,while,do,for,switch
+setlocal colorcolumn=
+setlocal comments=:#
+setlocal commentstring=#\ %s
+setlocal complete=.,w,b,u,t,i
+setlocal completefunc=syntaxcomplete#Complete
+setlocal nocopyindent
+setlocal cryptmethod=
+setlocal nocursorbind
+setlocal nocursorcolumn
+setlocal nocursorline
+setlocal define=^\\s*def\\s\\+\\(self\\.\\)\\=
+setlocal dictionary=
+setlocal nodiff
+setlocal equalprg=
+setlocal errorformat=
+setlocal expandtab
+if &filetype != 'ruby'
+setlocal filetype=ruby
+endif
+setlocal foldcolumn=2
+setlocal foldenable
+setlocal foldexpr=0
+setlocal foldignore=#
+setlocal foldlevel=1
+setlocal foldmarker={{{,}}}
+setlocal foldmethod=manual
+setlocal foldminlines=1
+setlocal foldnestmax=2
+setlocal foldtext=foldtext()
+setlocal formatexpr=
+setlocal formatoptions=croql
+setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
+setlocal grepprg=
+setlocal iminsert=2
+setlocal imsearch=2
+setlocal include=^\\s*\\<\\(load\\|w*require\\)\\>
+setlocal includeexpr=RailsIncludeexpr()
+setlocal indentexpr=GetRubyIndent()
+setlocal indentkeys=0{,0},0),0],!^F,o,O,e,=end,=elsif,=when,=ensure,=rescue,==begin,==end
+setlocal noinfercase
+setlocal iskeyword=@,48-57,_,192-255
+setlocal keywordprg=ri\ -T
+setlocal nolinebreak
+setlocal nolisp
+setlocal nolist
+setlocal makeprg=
+setlocal matchpairs=(:),{:},[:]
+setlocal modeline
+setlocal modifiable
+setlocal nrformats=octal,hex
+setlocal number
+setlocal numberwidth=4
+setlocal omnifunc=
+setlocal path=.,~/projects/trunk,~/projects/trunk/app,~/projects/trunk/app/models,~/projects/trunk/app/controllers,~/projects/trunk/app/helpers,~/projects/trunk/config,~/projects/trunk/lib,~/projects/trunk/app/views,~/projects/trunk/app/views/ordered_services,~/projects/trunk/public,~/projects/trunk/test,~/projects/trunk/test/unit,~/projects/trunk/test/functional,~/projects/trunk/test/integration,~/projects/trunk/spec,~/projects/trunk/spec/models,~/projects/trunk/spec/controllers,~/projects/trunk/spec/helpers,~/projects/trunk/spec/views,~/projects/trunk/spec/lib,~/projects/trunk/spec/requests,~/projects/trunk/spec/integration,~/projects/trunk/app/*,~/projects/trunk/vendor,~/projects/trunk/vendor/plugins/*/lib,~/projects/trunk/vendor/plugins/*/test,~/projects/trunk/vendor/rails/*/lib,~/projects/trunk/vendor/rails/*/test,/Library/Ruby/Site/1.8,/Library/Ruby/Site/1.8/powerpc-darwin10.0,/Library/Ruby/Site/1.8/universal-darwin10.0,/Library/Ruby/Site,/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/lib/ruby/vendor_rub
+setlocal nopreserveindent
+setlocal nopreviewwindow
+setlocal quoteescape=\\
+setlocal noreadonly
+setlocal norelativenumber
+setlocal noscrollbind
+setlocal shiftwidth=2
+setlocal noshortname
+setlocal nosmartindent
+setlocal softtabstop=2
+setlocal nospell
+setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
+setlocal spellfile=
+setlocal spelllang=en
+setlocal statusline=%<%f\ %h%m%r%{rails#statusline()}%=%-14.(%l,%c%V%)\ %P
+setlocal suffixesadd=.rb,.rhtml,.erb,.rxml,.builder,.rjs,.mab,.liquid,.haml,.dryml,.mn,.yml,.csv,.rake,s.rb
+setlocal swapfile
+setlocal synmaxcol=3000
+if &syntax != 'ruby'
+setlocal syntax=ruby
+endif
+setlocal tabstop=2
+setlocal tags=~/projects/trunk/tmp/tags,./tags,tags,~/projects/trunk/tags
+setlocal textwidth=0
+setlocal thesaurus=
+setlocal noundofile
+setlocal nowinfixheight
+setlocal nowinfixwidth
+setlocal nowrap
+setlocal wrapmargin=0
+silent! normal! zE
+9,49fold
+53,53fold
+59,108fold
+114,128fold
+138,155fold
+160,162fold
+166,211fold
+220,370fold
+379,392fold
+401,413fold
+420,429fold
+439,450fold
+456,463fold
+471,498fold
+506,508fold
+515,539fold
+545,560fold
+565,599fold
+603,655fold
+661,661fold
+665,667fold
+671,683fold
+687,719fold
+723,735fold
+739,751fold
+755,776fold
+780,788fold
+2,789fold
+2
+normal zo
+9
+normal zc
+53
+normal zc
+59
+normal zc
+114
+normal zc
+138
+normal zc
+160
+normal zc
+166
+normal zc
+220
+normal zc
+379
+normal zc
+401
+normal zc
+420
+normal zc
+439
+normal zc
+456
+normal zc
+471
+normal zc
+506
+normal zc
+515
+normal zc
+545
+normal zc
+565
+normal zc
+603
+normal zc
+661
+normal zc
+665
+normal zc
+671
+normal zc
+687
+normal zc
+723
+normal zc
+739
+normal zc
+755
+normal zc
+780
+normal zc
+2
+normal zo
+let s:l = 214 - ((213 * winheight(0) + 41) / 82)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+214
+normal! 017l
+let &so = s:so_save | let &siso = s:siso_save
+doautoall SessionLoadPost
+" vim: set ft=vim :

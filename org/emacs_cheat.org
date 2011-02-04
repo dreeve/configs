@@ -1,10 +1,6 @@
 * General
 | what                         | keys    |
 |------------------------------+---------|
-| bookmark                     | C-x r m |
-| go to bookmark               | C-x r b |
-| list bookmarks               | C-x r l |
-|------------------------------+---------|
 | go to tag                    | M-.     |
 |------------------------------+---------|
 | go to line                   | M-g g   |
@@ -16,6 +12,29 @@
 | bury buffer                  | C-c y   |
 |------------------------------+---------|
 | search and replace           | M-%     |
+| indent region                | C-M-\   |
+|------------------------------+---------|
+| go to next s-expression      | C-M-f   |
+|------------------------------+---------|
+| exchange point & mark        | C-x C-x |
+|------------------------------+---------|
+| undo-tree-visualize          | C-x C-_ |
+|------------------------------+---------|
+| delete until character x     | M-z x   |
+
+
+* Bookmarks and Registers
+| what                       | keys          |
+|----------------------------+---------------|
+| bookmark                   | C-x r m       |
+| go to bookmark             | C-x r b       |
+| list bookmarks             | C-x r l       |
+|----------------------------+---------------|
+| create position register X | C-x r <spc> X |
+| jump to register X         | C-x r j X     |
+|----------------------------+---------------|
+| jump to previous mark      | C-u C-<spc>   |
+
 
 * Capitalization
 | what                 | keys    |
@@ -23,7 +42,6 @@
 | Capitalize word      | M-c     |
 | Upcase word/region   | C-x C-u |
 | downcase word/region | C-x C-l |
-|                      |         |
 
 
 * CUA
@@ -58,9 +76,12 @@
 | diff                   | =      |
 | commit                 | c      |
 | update                 | U      |
-| revert                 | r      |
+| revert marked          | r      |
 | mark                   | m      |
 | unmark                 | u      |
+| visit file             | f      |
+| refresh                | g      |
+
 
 * yasnippets
 | keyword | what                                                 |
