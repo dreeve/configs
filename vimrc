@@ -26,6 +26,8 @@ let g:miniBufExplModSelTarget = 1
 " alt+n or alt+p to navigate between entries in QuickFix
 map <silent> <m-p> :cp <cr>
 map <silent> <m-n> :cn <cr>
+
+map ,m <ESC>:FufFile<CR>
  
 " Change which file opens after executing :Rails command
 let g:rails_default_file='config/database.yml'
@@ -140,3 +142,11 @@ call DisableFolding()
 " as much as I like autoloading views, this causes problems with rails.vim
 "au BufWinLeave * mkview
 "au BufWinEnter * silent loadview
+
+"ruby
+autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+"improve autocomplete menu color
+highlight Pmenu ctermbg=238 gui=bold
