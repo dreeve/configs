@@ -1,3 +1,4 @@
+let mapleader = ","
 " Add all directories under $DOTFILES/vim/vendor as runtime paths, so plugins,
 " docs, colors, and other runtime files are loaded.
 " stolen from ryankinderman/dotfiles
@@ -39,7 +40,7 @@ set sw=2          " set shiftwidth to 2
 set ts=2          " set number of spaces for a tab to 2
 set et            " expand tabs to spaces
 " Whitespace stuff
-set nowrap
+set wrap
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
@@ -69,7 +70,7 @@ if has("autocmd")
   " Use the default filetype settings, so that mail gets 'tw' set to 72,
   " 'cindent' is on in C files, etc.
   " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
+  " filetype plugin indent on
 
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
@@ -150,3 +151,26 @@ autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 "improve autocomplete menu color
 highlight Pmenu ctermbg=238 gui=bold
+
+filetype indent on    " Enable filetype-specific indenting
+filetype plugin on    " Enable filetype-specific plugins
+compiler ruby         " Enable compiler support for ruby
+
+let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'index': 'index'}]
+
+
+function! RunSpec(command)
+  if a:command == ''
+    let dir = 'spec'
+  else
+    let dir = a:command
+  endif
+  cexpr system("spec -r ~/Dropbox/tools/vim_formatter -f Spec::Runner::Formatter::VimFormatter " . dir)
+  cw
+endfunction
+
+command! -nargs=? -complete=file Spec call RunSpec(<q-args>)
+map <leader>s :Spec<space>
+
+set guifont=Monaco\ 10
+nnoremap <leader>. <c-^>
