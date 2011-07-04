@@ -6,6 +6,7 @@ autoload -U promptinit
 promptinit
 autoload -U colors
 colors
+bindkey -e
 
 bindkey '^i' expand-or-complete-prefix
 
@@ -48,13 +49,12 @@ function detect_git_dirty {
 # END FUNCTIONS
 ##################
 
-PROMPT="%{$fg_bold[yellow]%}%n@%{$fg_bold[white]%}%m %~ \$ %{$reset_color%}"
+#PROMPT="%{$fg_bold[white]%}%n%{$reset_color%}@%{$fg_bold[grey]%}%m %{$reset_color%}%~ \$ %{$reset_color%}"
+PROMPT="%{$fg_bold[white]%}%~ %{$fg_bold[grey]%}\$ %{$reset_color%}"
 RPROMPT='$(detect_rvm_version) %{$fg[cyan]%}$(detect_git_branch)%{$reset_color%}'
 
 export PATH="/usr/local/sbin:/usr/local/mysql/bin:/opt/local/bin:/opt/local/sbin:/usr/local/git/bin:/usr/local/bin:/opt/local/lib/postgresql83/bin:/usr/local/apache-maven/bin:$PATH" 
 export MANPATH=/opt/local/man:$MANPATH
-export ALTERNATE_EDITOR=""
-export EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c"
 
 export LS_COLORS="no=00:fi=00;32:di=01;37:ln=01;36:ex=01;31\
 :*.txt=01;33:*.TXT=01;33:*.rtf=01;33:*.RTF=01;33:*.doc=00;36:*.DOC=00;36:*.pdf=01;33:*.PDF=01;33\
@@ -79,12 +79,13 @@ alias r="rails"
 alias ls="ls --color"
 alias cp="cp -r"
 alias svns="svn status"
-alias gst="git status"
-#alias diff="colordiff -ar --exclude=.svn"
+alias st="git status"
+alias gd="git diff"
+alias ga="git add"
 alias emacs="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c"
 alias emacs_server="/Applications/Emacs.app/Contents/MacOS/Emacs --daemon"
 export ALTERNATE_EDITOR=""
-export EDITOR="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c"
+export EDITOR="vim"
 alias oldgrep="/usr/bin/grep"
 
 alias la="cd ~/projects/theunsung/ror"

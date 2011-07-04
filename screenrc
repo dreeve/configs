@@ -11,4 +11,4 @@ screen zsh
 # look and feel for the bottom two lines.
 #
 #caption     always        "%{+b rk}%H%{gk} |%c %{yk}%d.%m.%Y"
-hardstatus alwayslastline "%?%{yk}%-Lw%?%{wb}%n*%f %t%?(%u)%?%?%{yk}%+Lw%?"
+hardstatus alwayslastline "%?%{wk}%-Lw%?%{wb}%n*%f %t%?(%u)%?%?%{wk}%+Lw%?  %{= kw}%-=%D %d %M %Y %c"
