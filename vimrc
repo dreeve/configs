@@ -53,8 +53,10 @@ set ignorecase
 set smartcase
 
 " Tab completion
-set wildmode=list:longest,list:full
+set wildchar=<Tab>
+set wildmode=full
 set wildignore+=*.o,*.obj,.git,*.rbc,.svn
+set wildmenu
 
 " Switch syntax highlighting on, when the terminal has colors
 " " Also switch on highlighting the last used search pattern.
@@ -97,9 +99,6 @@ else
   set autoindent		" always set autoindenting on
 
 endif " has("autocmd")
-
-set wildmode=longest:full
-set wildmenu
 
 " colorscheme brookstream
 colorscheme candycode
@@ -173,4 +172,9 @@ command! -nargs=? -complete=file Spec call RunSpec(<q-args>)
 map <leader>s :Spec<space>
 
 set guifont=Monaco\ 10
+" switch between most recent and current buffers
 nnoremap <leader>. <c-^>
+" switch between open splits
+nmap <leader>/ <c-w>w
+
+let g:bufmru_switchkey = "<Space>"
