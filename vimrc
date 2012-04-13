@@ -1,180 +1,142 @@
+" Add untracked machine-local vim path
+let &rtp = "~/.vim.local,".&rtp
+
 let mapleader = ","
-" Add all directories under $DOTFILES/vim/vendor as runtime paths, so plugins,
-" docs, colors, and other runtime files are loaded.
-" stolen from ryankinderman/dotfiles
-let vendorpaths = globpath("$DOTFILES/vim", "vendor/*")
-let vendorruntimepaths = substitute(vendorpaths, "\n", ",", "g")
-let vendorpathslist = split(vendorpaths, "\n")
-execute "set runtimepath^=$DOTFILES/vim,".vendorruntimepaths
-for vendorpath in vendorpathslist
-  if isdirectory(vendorpath."/doc")
-    execute "helptags ".vendorpath."/doc"
-  endif
-endfor
 
-filetype on  " Automatically detect file types.
-set nocompatible  " We don't want vi compatibility.
- 
-" Add recently accessed projects menu (project plugin)
-set viminfo^=!
- 
-" Minibuffer Explorer Settings
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
- 
-" alt+n or alt+p to navigate between entries in QuickFix
-map <silent> <m-p> :cp <cr>
-map <silent> <m-n> :cn <cr>
+syntax on
+colorscheme candycode
+highlight LineNr        guifg=#cccccc ctermfg=Gray
+set nocompatible
 
-map ,m <ESC>:FufFile<CR>
- 
-" Change which file opens after executing :Rails command
-let g:rails_default_file='config/database.yml'
- 
-syntax enable
+" Let unsaved buffers exist in the background.
+set hidden
 
-set nu            " show line numbers
-set sw=2          " set shiftwidth to 2
-set ts=2          " set number of spaces for a tab to 2
-set et            " expand tabs to spaces
-" Whitespace stuff
-set wrap
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-"set list listchars=tab:\ \ ,trail:·
+" Highlight current row.
+set cursorline
 
-" Searching
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
+" no wrapping
+set nowrap
 
-" Tab completion
-set wildchar=<Tab>
-set wildmode=full
-set wildignore+=*.o,*.obj,.git,*.rbc,.svn
-set wildmenu
+" line numbers
+set number
 
-" Switch syntax highlighting on, when the terminal has colors
-" " Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
+" Show typed command prefixes while waiting for operator.
+set showcmd
+
+" Don't time out during commands.
+set notimeout
+
+" always show statusline
+set laststatus=2
+
+" pathogen
+call pathogen#infect()
+filetype plugin on
+filetype indent on
+
+" gui-related stuff
+set guifont=Menlo:h14
+set guioptions-=T  " no toolbar
+set guioptions-=e  " no tab bar
+set guioptions-=rL " no scrollbars
+
+" Don't prompt for file changes outside MacVim
+set autoread
+
+"strip trailing whitespace on save for code files
+function! StripTrailingWhitespace()
+  let save_cursor = getpos(".")
+  %s/\s\+$//e
+  call setpos('.', save_cursor)
+endfunction
+" rails
+autocmd BufWritePre *.rb,*.yml,*.js,*.css,*.less,*.sass,*.scss,*.html,*.xml,*.erb,*.haml call StripTrailingWhitespace()
+" misc
+autocmd BufWritePre *.java,*.php,*.feature call StripTrailingWhitespace()
+
+" highlight JSON files as javascript
+autocmd BufRead,BufNewFile *.json set filetype=javascript
+
+" Show whitespace, fullstops for trailing whitespace
+set list
+if has("gui_running")
+  set listchars=trail:Â·
+else
+  set listchars=trail:~
 endif
 
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
+" Swapfiles
+set swapfile
 
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  " filetype plugin indent on
+" Keep swap and backup files somewhere else
+set directory=~/.vim-tmp,~/tmp,/var/tmp,/tmp
+set backupdir=~/.vim-tmp,~/tmp,/var/tmp,/tmp
 
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
+" history size
+set history=1024
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
-  " For all ruby files, set 'shiftwidth' and 'tabspace' to 2 and expand tabs
-  " to spaces.
-  autocmd FileType ruby,eruby set sw=2 ts=2 et
+" incremental search
+set hlsearch
+set incsearch
+set smartcase
 
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  autocmd BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \   exe "normal g`\"" |
-    \ endif
+" show matching brackets
+set showmatch
 
-  augroup END
+" tab settings
+set tabstop=2
+set smarttab
+set shiftwidth=2
+set autoindent
+set expandtab
 
-else
+" tab completion
+set wildchar=<Tab>
+set wildmode=full
+set wildignore+=*.o,*.obj,.git,*/.git/*,*.rbc,.svn
+set wildmenu
 
-  set autoindent		" always set autoindenting on
+" Allow backspace to work more flexibly.
+set backspace=2
 
-endif " has("autocmd")
+" set question mark to be part of a VIM word. in Ruby it is!
+autocmd FileType ruby set iskeyword=@,48-57,_,?,!,192-255
+autocmd FileType scss set iskeyword=@,48-57,_,-,?,!,192-255
 
-" colorscheme brookstream
-colorscheme candycode
+" Write all writeable buffers when changing buffers or losing focus.
+autocmd BufLeave,FocusLost * silent! wall
+set autowriteall
 
-" I hate you, gui! I just want to use my mouse sometimes!
-set guioptions-=T " disables toolbar
-set guioptions-=m " disables menubar
-set guioptions-=lrb
-set guioptions=
+" Start scrolling when the cursor is within 3 lines of the edge.
+set scrolloff=3
 
+" Scroll faster.
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
 
-set hidden " enable multiple buffers to be opened without saving
-set ruler
+" Pad comment delimeters with spaces.
+let NERDSpaceDelims = 1
+" Comment/uncomment lines.
+map <leader>/ <plug>NERDCommenterToggle
 
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
-
-" Directories for swp files
-set backupdir=~/.vim/backup
-set directory=~/.vim/backup
-
-"folding settings
+" folding
 set foldmethod=indent
-set foldnestmax=2
-set nofoldenable 
-set foldlevel=1
-set foldcolumn=2
+set foldnestmax=3
+set foldlevel=2
+" zz to toggle folds
+map zz za
+map z` :set foldmethod=indent<CR>
 
-" Folding *********************************************************************
-function! EnableFolding()
-  "set foldcolumn=4
-  set foldcolumn=2
-  set foldenable
-endfunction
-function! DisableFolding()
-  set foldcolumn=0
-  set nofoldenable
-endfunction
-call DisableFolding()
+" tab shortcuts
+map <C-t><C-p> :tabprev<CR>
+map <C-t><C-n> :tabnext<CR>
+map <C-t><C-t> :tabnew<CR>
+map <C-t><C-w> :tabclose<CR>
 
-" as much as I like autoloading views, this causes problems with rails.vim
-"au BufWinLeave * mkview
-"au BufWinEnter * silent loadview
+" show a grey column at column 81
+set colorcolumn=81
+highlight ColorColumn ctermbg=7
+set winwidth=80
 
-"ruby
-autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
-autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
-autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-"improve autocomplete menu color
-highlight Pmenu ctermbg=238 gui=bold
-
-filetype indent on    " Enable filetype-specific indenting
-filetype plugin on    " Enable filetype-specific plugins
-compiler ruby         " Enable compiler support for ruby
-
-let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki/', 'index': 'index'}]
-
-
-function! RunSpec(command)
-  if a:command == ''
-    let dir = 'spec'
-  else
-    let dir = a:command
-  endif
-  cexpr system("spec -r ~/Dropbox/tools/vim_formatter -f Spec::Runner::Formatter::VimFormatter " . dir)
-  cw
-endfunction
-
-command! -nargs=? -complete=file Spec call RunSpec(<q-args>)
-map <leader>s :Spec<space>
-
-set guifont=Monaco\ 10
-" switch between most recent and current buffers
-nnoremap <leader>. <c-^>
-" switch between open splits
-nmap <leader>/ <c-w>w
-
-let g:bufmru_switchkey = "<Space>"
+" Add new windows towards the right and bottom.
+set splitbelow splitright
