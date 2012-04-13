@@ -1,4 +1,3 @@
-source /sw/bin/init.sh
 autoload -U compinit
 compinit
 zstyle ':completion:*' menu select
@@ -50,11 +49,8 @@ function detect_git_dirty {
 ##################
 
 #PROMPT="%{$fg_bold[white]%}%n%{$reset_color%}@%{$fg_bold[grey]%}%m %{$reset_color%}%~ \$ %{$reset_color%}"
-PROMPT="%{$fg_bold[white]%}%~ %{$fg_bold[grey]%}\$ %{$reset_color%}"
+PROMPT="%{$fg_bold[white]%}%~ %{$fg[cyan]%}\$ %{$reset_color%}"
 RPROMPT='$(detect_rvm_version) %{$fg[cyan]%}$(detect_git_branch)%{$reset_color%}'
-
-export PATH="/usr/local/sbin:/usr/local/mysql/bin:/opt/local/bin:/opt/local/sbin:/usr/local/git/bin:/usr/local/bin:/opt/local/lib/postgresql83/bin:/usr/local/apache-maven/bin:$PATH" 
-export MANPATH=/opt/local/man:$MANPATH
 
 export LS_COLORS="no=00:fi=00;32:di=01;37:ln=01;36:ex=01;31\
 :*.txt=01;33:*.TXT=01;33:*.rtf=01;33:*.RTF=01;33:*.doc=00;36:*.DOC=00;36:*.pdf=01;33:*.PDF=01;33\
@@ -72,24 +68,20 @@ alias less="less -FRX"
 alias ls="ls --color"
 
 alias ack="ack --pager='less -FRX' --ignore-dir=tmp --ignore-dir=db --ignore-dir=log --ignore-dir=target"
-alias grep="ack --pager='less -FRX' --ignore-dir=tmp --ignore-dir=db --ignore-dir=log --ignore-dir=target"
-alias oldgrep="/usr/bin/grep"
 alias r="rails"
 
-alias ls="ls --color"
 alias cp="cp -r"
-alias svns="svn status"
 alias st="git status"
 alias gd="git diff"
 alias ga="git add"
-alias emacs="/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -c"
-alias emacs_server="/Applications/Emacs.app/Contents/MacOS/Emacs --daemon"
-export ALTERNATE_EDITOR=""
+alias gss="git status --short"
+alias gci="git commit -m"
 export EDITOR="vim"
-alias oldgrep="/usr/bin/grep"
 
-alias la="cd ~/projects/theunsung/ror"
+alias rspec="bundle exec rspec"
+alias bake="bundle exec rake"
 
-export RSPEC=true
 
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
+
+source ~/.zshrc.local
