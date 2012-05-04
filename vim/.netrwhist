@@ -1,9 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/Users/pivotal/workspace/D2C-Modular-Platform'
-let g:netrw_dirhist_2='/Users/pivotal/workspace/D2C-Modular-Platform/lib'
-let g:netrw_dirhist_3='/Users/pivotal/workspace/D2C-Modular-Platform/lib/widget'
-let g:netrw_dirhist_4='/Users/pivotal/workspace/D2C-Modular-Platform'
-let g:netrw_dirhist_5='/Users/pivotal/workspace/D2C-Modular-Platform/lib'
-let g:netrw_dirhist_6='/Users/pivotal/workspace/D2C-Modular-Platform'
-let g:netrw_dirhist_7='/Users/pivotal/workspace/dope/dope/app/assets/javascripts'
