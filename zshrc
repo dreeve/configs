@@ -71,11 +71,13 @@ alias ack="ack --pager='less -FRX' --ignore-dir=tmp --ignore-dir=db --ignore-dir
 alias r="rails"
 
 alias cp="cp -r"
-alias st="git status"
-alias gd="git diff"
-alias ga="git add"
+alias d="git diff"
+alias a="git add"
 alias gss="git status --short"
+alias st="git status --short"
+alias s="git status --short"
 alias gci="git commit -m"
+alias gl="git l"
 export EDITOR="vim"
 
 alias rspec="bundle exec rspec"

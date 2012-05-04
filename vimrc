@@ -4,7 +4,8 @@ let &rtp = "~/.vim.local,".&rtp
 let mapleader = ","
 
 syntax on
-colorscheme candycode
+" colorscheme candycode
+colorscheme Tomorrow-Night-Bright
 highlight LineNr        guifg=#cccccc ctermfg=Gray
 set nocompatible
 
@@ -135,8 +136,8 @@ map <C-t><C-w> :tabclose<CR>
 
 " show a grey column at column 81
 set colorcolumn=81
-highlight ColorColumn ctermbg=7
-set winwidth=80
+highlight ColorColumn ctermbg=darkgray
+set winwidth=82
 
 " Add new windows towards the right and bottom.
 set splitbelow splitright
