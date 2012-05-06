@@ -13,3 +13,6 @@
 [submodule "vim/bundle/vim-turbux"]
 	path = vim/bundle/vim-turbux
 	url = git://github.com/jgdavey/vim-turbux.git
+[submodule "vim/bundle/tslime.vim/plugin/tslime.vim"]
+	path = vim/bundle/tslime.vim/plugin/tslime.vim
+	url = git://github.com/kikijump/tslime.vim.git
