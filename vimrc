@@ -35,13 +35,7 @@ call pathogen#infect()
 filetype plugin on
 filetype indent on
 
-" gui-related stuff
-set guifont=Menlo:h14
-set guioptions-=T  " no toolbar
-set guioptions-=e  " no tab bar
-set guioptions-=rL " no scrollbars
-
-" Don't prompt for file changes outside MacVim
+" Don't prompt for file changes outside vim
 set autoread
 
 "strip trailing whitespace on save for code files
@@ -114,11 +108,6 @@ set scrolloff=3
 " Scroll faster.
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
-
-" Pad comment delimeters with spaces.
-let NERDSpaceDelims = 1
-" Comment/uncomment lines.
-map <leader>/ <plug>NERDCommenterToggle
 
 " folding
 set foldmethod=indent
