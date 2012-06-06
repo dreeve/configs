@@ -71,17 +71,25 @@ alias ack="ack --pager='less -FRX' --ignore-dir=tmp --ignore-dir=db --ignore-dir
 alias r="rails"
 
 alias cp="cp -r"
-alias d="git diff"
-alias a="git add"
-alias gss="git status --short"
-alias st="git status --short"
-alias s="git status --short"
-alias gci="git commit -m"
-alias gl="git l"
+
 export EDITOR="vim"
 
 alias rspec="bundle exec rspec"
 alias bake="bundle exec rake"
+
+################
+# Git Aliases
+################
+alias d="git diff"
+alias a="git add"
+alias c="git commit"
+alias gss="git status --short"
+alias st="git status --short"
+alias s="git status --short"
+alias gci="git commit -m"
+alias grh="git reset HEAD"
+alias gpr="git pull --rebase"
+alias gl="git l"
 
 
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
