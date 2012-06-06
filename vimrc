@@ -130,3 +130,5 @@ set winwidth=82
 
 " Add new windows towards the right and bottom.
 set splitbelow splitright
+
+map <Space> :noh<cr>
