@@ -132,3 +132,4 @@ set winwidth=82
 set splitbelow splitright
 
 map <Space> :noh<cr>
+imap jj <Esc>
