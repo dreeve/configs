@@ -133,3 +133,12 @@ set splitbelow splitright
 
 map <Space> :noh<cr>
 imap jj <Esc>
+
+" use c-p/c-n to go up and down the list 
+" to select alternate files in ctrlp
+let g:ctrlp_prompt_mappings = {
+      \ 'PrtHistory(-1)':       ['<c-j>', '<up>'],
+      \ 'PrtHistory(1)':        ['<c-k>', '<down>'],
+      \ 'PrtSelectMove("j")':   ['<c-n>'],
+      \ 'PrtSelectMove("k")':   ['<c-p>']
+      \ }
