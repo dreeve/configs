@@ -90,8 +90,11 @@ alias gci="git commit -m"
 alias grh="git reset HEAD"
 alias gpr="git pull --rebase"
 alias gl="git l"
+alias gau="git add --update"
 
 
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
 
 source ~/.zshrc.local
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
