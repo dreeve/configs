@@ -18,9 +18,6 @@ set cursorline
 " no wrapping
 set nowrap
 
-" line numbers
-set number
-
 " Show typed command prefixes while waiting for operator.
 set showcmd
 
@@ -111,8 +108,8 @@ nnoremap <C-y> 3<C-y>
 
 " folding
 set foldmethod=indent
-set foldnestmax=3
-set foldlevel=2
+set foldnestmax=2
+set foldlevel=1
 " zz to toggle folds
 map zz za
 map z` :set foldmethod=indent<CR>
@@ -123,6 +120,12 @@ map <C-t><C-n> :tabnext<CR>
 map <C-t><C-t> :tabnew<CR>
 map <C-t><C-w> :tabclose<CR>
 
+" get rid of C-w for switching splits
+map ,h <C-w><C-h>
+map ,l <C-w><C-l>
+map ,j <C-w><C-j>
+map ,k <C-w><C-k>
+
 " show a grey column at column 81
 set colorcolumn=81
 highlight ColorColumn ctermbg=darkgray
@@ -132,7 +135,7 @@ set winwidth=82
 set splitbelow splitright
 
 map <Space> :noh<cr>
-imap jj <Esc>
+imap kj <Esc>
 
 " use c-p/c-n to go up and down the list 
 " to select alternate files in ctrlp
@@ -142,3 +145,51 @@ let g:ctrlp_prompt_mappings = {
       \ 'PrtSelectMove("j")':   ['<c-n>'],
       \ 'PrtSelectMove("k")':   ['<c-p>']
       \ }
+
+
+" line numbers
+set rnu
+:au FocusLost * :set number
+:au FocusGained * :set relativenumber
+autocmd InsertEnter * :set number
+autocmd InsertLeave * :set relativenumber
+
+if exists("+showtabline")
+  function MyTabLine()
+    let s = ''
+    let t = tabpagenr()
+    let i = 1
+    while i <= tabpagenr('$')
+    let buflist = tabpagebuflist(i)
+      let winnr = tabpagewinnr(i)
+      let s .= '%' . i . 'T'
+      let s .= (i == t ? '%1*' : '%2*')
+    let s .= ' '
+      let s .= i
+      let s .= ' %*'
+      let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
+      let file = bufname(buflist[winnr - 1])
+      let file = fnamemodify(file, ':p:t')
+      if file == ''
+        let file = '[No Name]'
+    endif
+      let s .= file
+      let i = i + 1
+    endwhile
+    let s .= '%T%#TabLineFill#%='
+    let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
+    return s
+  endfunction
+  set stal=2
+  set tabline=%!MyTabLine()
+endif
+
+function! NumberToggle()
+  if(&relativenumber == 1)
+    set number
+  else
+    set relativenumber
+  endif
+endfunc
+
+nnoremap <C-n> :call NumberToggle()<cr>
