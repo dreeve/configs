@@ -120,6 +120,38 @@ map <C-t><C-n> :tabnext<CR>
 map <C-t><C-t> :tabnew<CR>
 map <C-t><C-w> :tabclose<CR>
 
+" show tab number
+if exists("+showtabline")
+  function MyTabLine()
+    let s = ''
+    let t = tabpagenr()
+    let i = 1
+    while i <= tabpagenr('$')
+    let buflist = tabpagebuflist(i)
+      let winnr = tabpagewinnr(i)
+      let s .= '%' . i . 'T'
+      let s .= (i == t ? '%1*' : '%2*')
+    let s .= ' '
+      let s .= i
+      let s .= ' %*'
+      let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
+      let file = bufname(buflist[winnr - 1])
+      let file = fnamemodify(file, ':p:t')
+      if file == ''
+        let file = '[No Name]'
+    endif
+      let s .= file
+      let i = i + 1
+    endwhile
+    let s .= '%T%#TabLineFill#%='
+    let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
+    return s
+  endfunction
+  set stal=2
+  set tabline=%!MyTabLine()
+endif
+
+
 " get rid of C-w for switching splits
 map ,h <C-w><C-h>
 map ,l <C-w><C-l>
@@ -153,36 +185,6 @@ set rnu
 :au FocusGained * :set relativenumber
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
-
-if exists("+showtabline")
-  function MyTabLine()
-    let s = ''
-    let t = tabpagenr()
-    let i = 1
-    while i <= tabpagenr('$')
-    let buflist = tabpagebuflist(i)
-      let winnr = tabpagewinnr(i)
-      let s .= '%' . i . 'T'
-      let s .= (i == t ? '%1*' : '%2*')
-    let s .= ' '
-      let s .= i
-      let s .= ' %*'
-      let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
-      let file = bufname(buflist[winnr - 1])
-      let file = fnamemodify(file, ':p:t')
-      if file == ''
-        let file = '[No Name]'
-    endif
-      let s .= file
-      let i = i + 1
-    endwhile
-    let s .= '%T%#TabLineFill#%='
-    let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
-    return s
-  endfunction
-  set stal=2
-  set tabline=%!MyTabLine()
-endif
 
 function! NumberToggle()
   if(&relativenumber == 1)
