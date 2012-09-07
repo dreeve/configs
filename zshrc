@@ -7,6 +7,9 @@ autoload -U colors
 colors
 bindkey -e
 
+# Show completion on first TAB (from https://github.com/tdenkinger/zshrc.conf)
+# setopt menucomplete
+
 bindkey '^i' expand-or-complete-prefix
 
 # allow approximate
@@ -67,7 +70,6 @@ alias l="less -FRX"
 alias less="less -FRX"
 alias ls="ls --color"
 
-alias ack="ack --pager='less -FRX' --ignore-dir=tmp --ignore-dir=db --ignore-dir=log --ignore-dir=target"
 alias r="rails"
 
 alias cp="cp -r"
