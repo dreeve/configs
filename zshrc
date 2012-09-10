@@ -75,6 +75,7 @@ alias r="rails"
 alias cp="cp -r"
 
 export EDITOR="vim"
+export GIT_EDITOR='vim -c "colorscheme candycode"'
 
 alias rspec="bundle exec rspec"
 alias bake="bundle exec rake"
