@@ -1,7 +1,7 @@
 " Add untracked machine-local vim path
 let &rtp = "~/.vim.local,".&rtp
 
-let mapleader = ","
+let mapleader = "\\"
 
 syntax on
 " colorscheme candycode
@@ -111,7 +111,6 @@ set foldmethod=indent
 set foldnestmax=2
 set foldlevel=1
 " zz to toggle folds
-map zz za
 map z` :set foldmethod=indent<CR>
 
 " tab shortcuts
@@ -153,14 +152,14 @@ endif
 
 
 " get rid of C-w for switching splits
-map ,h <C-w><C-h>
-map ,l <C-w><C-l>
-map ,j <C-w><C-j>
-map ,k <C-w><C-k>
+map <Leader>h <C-w><C-h>
+map <Leader>l <C-w><C-l>
+map <Leader>j <C-w><C-j>
+map <Leader>k <C-w><C-k>
 
 " show a grey column at column 81
-set colorcolumn=81
-highlight ColorColumn ctermbg=darkgray
+set colorcolumn=80
+highlight ColorColumn ctermbg=black
 set winwidth=82
 
 " Add new windows towards the right and bottom.
@@ -185,6 +184,7 @@ set rnu
 :au FocusGained * :set relativenumber
 autocmd InsertEnter * :set number
 autocmd InsertLeave * :set relativenumber
+set numberwidth=5
 
 function! NumberToggle()
   if(&relativenumber == 1)
@@ -195,3 +195,5 @@ function! NumberToggle()
 endfunc
 
 nnoremap <C-n> :call NumberToggle()<cr>
+
+let g:Powerline_colorscheme = 'skwp'
