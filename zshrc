@@ -68,6 +68,7 @@ export LS_COLORS="no=00:fi=00;32:di=01;37:ln=01;36:ex=01;31\
 
 alias l="less -FRX"
 alias less="less -FRX"
+export LESS="-FRX"
 alias ls="ls --color"
 
 alias r="rails"
@@ -76,6 +77,8 @@ alias cp="cp -r"
 
 export EDITOR="vim"
 export GIT_EDITOR='vim -c "colorscheme candycode"'
+
+export RI="-f ansi"
 
 alias rspec="bundle exec rspec"
 alias bake="bundle exec rake"
