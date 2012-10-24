@@ -1,3 +1,4 @@
+set t_Co=256
 " Add untracked machine-local vim path
 let &rtp = "~/.vim.local,".&rtp
 
