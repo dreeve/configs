@@ -1,10 +1,1 @@
---type-set=log=.log
---type-add=css=.sass,.scss,.less
---type-add=html=.haml
---noheading
---nobreak
---smart-case
---ignore-dir=tmp
---ignore-dir=log
---ignore-dir=db
---pager=less -FRX
+/Users/elc/configs/ackrc
