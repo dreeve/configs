@@ -1,0 +1,27 @@
+[include]
+  path = ~/.gitconfig.local
+[core]
+  excludesfile = ~/.gitignore
+[color]
+  ui = auto
+  pager = true
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan
+  ui = true
+[alias]
+  co = checkout
+  ci = commit --signoff
+  st = status
+  di = diff
+  br = branch
+  sta = stash
+  llog = log --date=local 
+  type = cat-file -t
+  dump = cat-file -p
+  fullhashlog = "log --graph --abbrev-commit '--format=format:%H %C(yellow)%ci%Creset %Cgreen%an%Creset | %s'"
+  w = whatchanged
+  unpushed = !"PROJ_BRANCH=$(git symbolic-ref HEAD | sed 's|refs/heads/||') && git log origin/$PROJ_BRANCH..HEAD"
+[push]
+  default = current
