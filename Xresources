@@ -3,7 +3,8 @@ xterm*eightBitInput: false
 
 ! A bunch of this was stolen from
 ! http://scarygliders.net/2011/12/01/customize-xterm-the-original-and-best-terminal/
-xterm*faceName: SourceCodePro-Regular
+! xterm*faceName: SourceCodePro-Regular
+xterm*faceName: Source Code Pro for Powerline
 xterm*faceSize: 14
 
 ! Every shell is a login shell by default (for inclusion of all necessary environment variables)
@@ -14,6 +15,10 @@ xterm*savelines: 16384
 
 ! double-click to select whole URLs :D
 xterm*charClass: 33:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+
+urxvt.font:             xft: Source Code Pro for Powerline:autohint=true:antialias=true:size=15
+urxvt.scrollBar:        false
+urxvt.tintColor:        white
 
 ! some nice colors
 xterm*foreground: rgb:a8/a8/a8
@@ -34,6 +39,10 @@ xterm*color12: rgb:54/54/fc
 xterm*color13: rgb:fc/54/fc
 xterm*color14: rgb:54/fc/fc
 xterm*color15: rgb:fc/fc/fc
+
+urxvt*foreground: #a8a8a8
+urxvt*background: #a8a8a8
+urxvt*color0: #000000
 
 xterm*ScrollBar: false
 XTerm*color4: royalblue
