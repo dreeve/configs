@@ -40,13 +40,28 @@ xterm*color13: rgb:fc/54/fc
 xterm*color14: rgb:54/fc/fc
 xterm*color15: rgb:fc/fc/fc
 
-urxvt*foreground: #a8a8a8
-urxvt*background: #a8a8a8
-urxvt*color0: #000000
-
 xterm*ScrollBar: false
 XTerm*color4: royalblue
 XTerm*color12: lightblue
+
+urxvt*foreground: rgb:a8/a8/a8
+urxvt*background: rgb:00/00/00
+urxvt*color0: rgb:00/00/00
+urxvt*color1: rgb:a8/00/00
+urxvt*color2: rgb:00/a8/00
+urxvt*color3: rgb:a8/54/00
+urxvt*color4: rgb:15/15/dd
+urxvt*color5: rgb:a8/00/a8
+urxvt*color6: rgb:00/a8/a8
+urxvt*color7: rgb:a8/a8/a8
+urxvt*color8: rgb:54/54/54
+urxvt*color9: rgb:fc/54/54
+urxvt*color10: rgb:54/fc/54
+urxvt*color11: rgb:fc/fc/54
+urxvt*color12: rgb:54/54/fc
+urxvt*color13: rgb:fc/54/fc
+urxvt*color14: rgb:54/fc/fc
+urxvt*color15: rgb:fc/fc/fc
 
 ! stop output to terminal from jumping down to bottom of scroll again
 xterm*scrollTtyOutput: false
