@@ -18,6 +18,11 @@
   br = branch
   sta = stash
   llog = log --date=local 
+  # log display with traintracks.
+  g = log --graph --pretty=format':%C(yellow)%h%Creset %s %C(cyan) %an%Creset (%ar)' --date=local --decorate
+  l = log --pretty=format':%C(green)%C(bold)%h%C(cyan)%Creset %s %C(cyan)%aN%Creset (%ar)' --date=local --decorate
+  # alternate log display from Scott Chacon
+  lol = log --pretty=oneline --abbrev=commit --graph --decorate --date=local
   type = cat-file -t
   dump = cat-file -p
   fullhashlog = "log --graph --abbrev-commit '--format=format:%H %C(yellow)%ci%Creset %Cgreen%an%Creset | %s'"
