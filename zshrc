@@ -96,11 +96,10 @@ alias gci="git commit"
 alias grh="git reset HEAD"
 alias gpr="git pull --rebase"
 alias gp="git push"
-alias gl="git log"
+alias gl="git l"
 alias gau="git add --update"
 alias gfu="git fetch upstream"
 alias grum="git fetch upstream && git rebase upstream/master"
-
 
 if [[ -s $HOME/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
 
