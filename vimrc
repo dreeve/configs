@@ -109,9 +109,8 @@ nnoremap <C-y> 3<C-y>
 
 " folding
 set foldmethod=indent
-set foldnestmax=2
-set foldlevel=1
-" zz to toggle folds
+set foldnestmax=4
+set foldlevel=2
 map z` :set foldmethod=indent<CR>
 
 " tab shortcuts
@@ -119,6 +118,7 @@ map <C-t><C-p> :tabprev<CR>
 map <C-t><C-n> :tabnext<CR>
 map <C-t><C-t> :tabnew<CR>
 map <C-t><C-w> :tabclose<CR>
+map <C-t><C-h> :tabprev<CR>
 
 " show tab number
 if exists("+showtabline")
@@ -158,6 +158,10 @@ map <Leader>l <C-w><C-l>
 map <Leader>j <C-w><C-j>
 map <Leader>k <C-w><C-k>
 
+map <Leader>v :vsp<cr><C-p>
+
+map <Leader>p :CtrlPClearCache<cr>
+
 " show a grey column at column 81
 set colorcolumn=80
 highlight ColorColumn ctermbg=black
@@ -167,7 +171,6 @@ set winwidth=82
 set splitbelow splitright
 
 map <Space> :noh<cr>
-imap kj <Esc>
 
 " use c-p/c-n to go up and down the list 
 " to select alternate files in ctrlp
@@ -198,3 +201,4 @@ endfunc
 nnoremap <C-n> :call NumberToggle()<cr>
 
 let g:Powerline_colorscheme = 'skwp'
+
