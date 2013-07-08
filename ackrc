@@ -7,4 +7,5 @@
 --ignore-dir=tmp
 --ignore-dir=log
 --ignore-dir=db
+--ignore-dir=coverage
 --pager=less -FRX
