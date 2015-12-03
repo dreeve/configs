@@ -169,12 +169,6 @@ if exists("+showtabline")
 endif
 
 
-" get rid of C-w for switching splits
-map <Leader>h <C-w><C-h>
-map <Leader>l <C-w><C-l>
-map <Leader>j <C-w><C-j>
-map <Leader>k <C-w><C-k>
-
 " show a grey column at column 81
 set colorcolumn=80
 highlight ColorColumn ctermbg=black
@@ -199,11 +193,14 @@ let g:ctrlp_prompt_mappings = {
 
 
 " line numbers
-set rnu
-:au FocusLost * :set number
-:au FocusGained * :set relativenumber
-autocmd InsertEnter * :set number
-autocmd InsertLeave * :set relativenumber
+set number
+
+" relative line numbers
+"set rnu
+":au FocusLost * :set number
+":au FocusGained * :set relativenumber
+"autocmd InsertEnter * :set number
+"autocmd InsertLeave * :set relativenumber
 set numberwidth=5
 
 function! NumberToggle()
