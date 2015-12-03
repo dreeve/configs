@@ -29,14 +29,6 @@ setopt INC_APPEND_HISTORY      # write after each command
 ##################
 # BEGIN FUNCTIONS
 ##################
-function detect_rvm_version {
-  local gemset=$(echo $GEM_HOME | awk -F'@' '{print $2}')
-  [ "$gemset" != "" ] && gemset="@$gemset" 
-  local version=$(echo $MY_RUBY_HOME | awk -F'-' '{print $2}')
-  [ "$version" != "" ] && version="$version" 
-  local full="%{$fg_bold[white]%}$version%{$fg_bold[green]%}$gemset%{$reset_color%}"
-  [ "$full" != "" ] && echo "$full"
-}
 
 function detect_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1/"
@@ -53,7 +45,7 @@ function detect_git_dirty {
 
 #PROMPT="%{$fg_bold[white]%}%n%{$reset_color%}@%{$fg_bold[grey]%}%m %{$reset_color%}%~ \$ %{$reset_color%}"
 PROMPT="%{$fg_bold[white]%}%~ %{$fg[cyan]%}\$ %{$reset_color%}"
-RPROMPT='$(detect_rvm_version) %{$fg[cyan]%}$(detect_git_branch)%{$reset_color%}'
+RPROMPT='%{$fg[cyan]%}$(detect_git_branch)%{$reset_color%}'
 
 export LS_COLORS="no=00:fi=00;32:di=01;37:ln=01;36:ex=01;31\
 :*.txt=01;33:*.TXT=01;33:*.rtf=01;33:*.RTF=01;33:*.doc=00;36:*.DOC=00;36:*.pdf=01;33:*.PDF=01;33\
