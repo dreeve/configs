@@ -14,6 +14,14 @@ call vundle#begin()
 " Plugins. :PluginInstall to install
 Plugin 'VundleVim/Vundle.vim' " Let Vundle manage Vundle
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/nerdcommenter.git'
+Plugin 'msanders/snipmate.vim'
+Plugin 'sjl/tslime.vim'
+Plugin 'tpope/vim-endwise'
+Plugin 'tmhedberg/matchit'
+Plugin 'tpope/vim-rails'
+Plugin 'jgdavey/vim-turbux'
 
 call vundle#end()
 
@@ -214,6 +222,8 @@ endfunc
 nnoremap <C-h> :call NumberToggle()<cr>
 nnoremap <Leader>v :vsp<cr>:CtrlP<cr>
 
-let g:Powerline_colorscheme = 'skwp'
+let g:airline_powerline_fonts = 1
+let g:airline_theme = 'kolor'
+let g:airline#extensions#whitespace#enabled = 0
 
 map <C-n> :NERDTreeToggle<CR>
