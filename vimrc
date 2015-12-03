@@ -1,6 +1,20 @@
 set t_Co=256
+set nocompatible
+filetype off
+
 " Add untracked machine-local vim path
 let &rtp = "~/.vim.local,".&rtp
+
+set rtp+=~/.vim/bundle/Vundle.vim
+
+" set the runtime path to include Vundle and initialize
+call vundle#begin()
+
+" Plugins. :PluginInstall to install
+Plugin 'VundleVim/Vundle.vim' " Let Vundle manage Vundle
+Plugin 'ctrlpvim/ctrlp.vim'
+
+call vundle#end()
 
 let mapleader = "\\"
 
@@ -8,7 +22,6 @@ syntax on
 " colorscheme candycode
 colorscheme Tomorrow-Night-Bright
 highlight LineNr        guifg=#cccccc ctermfg=Gray
-set nocompatible
 
 " Let unsaved buffers exist in the background.
 set hidden
@@ -28,8 +41,6 @@ set notimeout
 " always show statusline
 set laststatus=2
 
-" pathogen
-call pathogen#infect()
 filetype plugin on
 filetype indent on
 
