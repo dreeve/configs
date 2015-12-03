@@ -4,10 +4,13 @@
 At some point I'll make this into a nice little configuration script. But before
 that, I need to enumerate the steps it takes!
 
-* Install GNU Coreutils to enable better ls colors.
+*Either replace `$CONFIG_DIR` below with this directory's path or set the 
+  `$CONFIG_DIR` environment variable.*
 
-* Either replace `$CONFIG_DIR` below with this directory's path or set the 
-  `$CONFIG_DIR` environment variable.
+### zsh
+* Install GNU Coreutils to enable better ls colors.
+* `ln -s $CONFIG_DIR/zshrc ~/zshrc`
+
 * `ln -s $CONFIG_DIR/vimrc ~/.vimrc`
 * Install vim plugins by running vim and executing `:PluginInstall`
 * `ln -s $CONFIG_DIR/ruby.snippets ~/.vim/bundle/snipmate.vim/snippets/`
