@@ -32,7 +32,7 @@ let mapleader = "\\"
 syntax on
 " colorscheme candycode
 " colorscheme Tomorrow-Night-Bright
-"colorscheme vividchalk
+" colorscheme vividchalk
 colorscheme vibrantink
 highlight LineNr        guifg=#cccccc ctermfg=Gray
 
@@ -191,6 +191,7 @@ map <Space> :noh<cr>
 imap kj <Esc>:w<cr>
 
 map <Leader>p :CtrlPClearCache<CR>
+set pastetoggle=<leader><space>
 
 " use c-p/c-n to go up and down the list 
 " to select alternate files in ctrlp
