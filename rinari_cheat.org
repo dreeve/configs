@@ -1,7 +1,0 @@
-* Rinari
-** find
-| what       | keys      |
-|------------+-----------|
-| model      | C-c ; f m |
-| controller | C-c ; f c |
-| view       | C-c ; f v |
