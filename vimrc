@@ -21,7 +21,9 @@ let mapleader = "\\"
 
 syntax on
 " colorscheme candycode
-colorscheme Tomorrow-Night-Bright
+" colorscheme Tomorrow-Night-Bright
+"colorscheme vividchalk
+colorscheme vibrantink
 highlight LineNr        guifg=#cccccc ctermfg=Gray
 
 " Let unsaved buffers exist in the background.
