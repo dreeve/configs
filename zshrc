@@ -34,9 +34,8 @@ function detect_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/\1/"
 }
 
-function detect_git_dirty {
-  git_status=$(git status 2>&1 | tail -n1)
-  [[ $git_status != "fatal: Not a git repository (or any of the parent directories): .git" ]] && [[ $git_status != "nothing to commit (working directory clean)" ]] && echo "*"
+function parse_git_dirty {
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit (working directory clean)" ]] && echo "*"
 }
 
 ##################
@@ -45,7 +44,7 @@ function detect_git_dirty {
 
 #PROMPT="%{$fg_bold[white]%}%n%{$reset_color%}@%{$fg_bold[grey]%}%m %{$reset_color%}%~ \$ %{$reset_color%}"
 PROMPT="%{$fg_bold[white]%}%~ %{$fg[cyan]%}\$ %{$reset_color%}"
-RPROMPT='%{$fg[cyan]%}$(detect_git_branch)%{$reset_color%}'
+RPROMPT='%{$fg[cyan]%}$(detect_git_branch)%{$reset_color%}%{$fg[red]%}$(parse_git_dirty)%{$reset_color%}'
 
 export LS_COLORS="no=00:fi=00;32:di=01;37:ln=01;36:ex=01;31\
 :*.txt=01;33:*.TXT=01;33:*.rtf=01;33:*.RTF=01;33:*.doc=00;36:*.DOC=00;36:*.pdf=01;33:*.PDF=01;33\
