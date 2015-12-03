@@ -17,3 +17,6 @@ be done in one script:
 
 * `chmod 755 $CONFIG_DIR/powerline/configure_powerline.sh`
 * `$CONFIG_DIR/powerline/configure_powerline.sh`
+
+Add the tmux config:
+* `ls -s $CONFIG_DIR/tmux.conf ~/.tmux.conf`
