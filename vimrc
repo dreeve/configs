@@ -4,6 +4,7 @@ filetype off
 
 " Add untracked machine-local vim path
 let &rtp = "~/.vim.local,".&rtp
+set rtp+=~/.vim.local
 
 set rtp+=~/.vim/bundle/Vundle.vim
 
