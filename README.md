@@ -1,6 +1,8 @@
 # A collection of configuration files
 
 ## Setup Instructions for a new machine
+At some point I'll make this into a nice little configuration script. But before
+that, I need to enumerate the steps it takes!
 
 * Either replace `$CONFIG_DIR` below with this directory's path or set the 
   `$CONFIG_DIR` environment variable.
