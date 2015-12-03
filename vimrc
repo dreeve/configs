@@ -22,6 +22,8 @@ Plugin 'tpope/vim-endwise'
 Plugin 'tmhedberg/matchit'
 Plugin 'tpope/vim-rails'
 Plugin 'jgdavey/vim-turbux'
+Plugin 'godlygeek/tabular'
+Plugin 'plasticboy/vim-markdown'
 
 call vundle#end()
 
