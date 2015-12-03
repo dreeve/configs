@@ -4,6 +4,8 @@
 At some point I'll make this into a nice little configuration script. But before
 that, I need to enumerate the steps it takes!
 
+* Install GNU Coreutils to enable better ls colors.
+
 * Either replace `$CONFIG_DIR` below with this directory's path or set the 
   `$CONFIG_DIR` environment variable.
 * `ln -s $CONFIG_DIR/vimrc ~/.vimrc`
