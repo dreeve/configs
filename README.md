@@ -18,7 +18,7 @@ that, I need to enumerate the steps it takes!
 * `git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim`
 * `vim +PluginInstall +qall` will install plugins
   * You can also install vim plugins by running vim and executing `:PluginInstall`
-* `ln -s $CONFIG_DIR/ruby.snippets ~/.vim/bundle/snipmate.vim/snippets/`
+* `ln -sf $CONFIG_DIR/ruby.snippets ~/.vim/bundle/snipmate.vim/snippets/`
 
 
 ### powerline
