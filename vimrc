@@ -15,6 +15,7 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim' " Let Vundle manage Vundle
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/nerdcommenter.git'
 Plugin 'msanders/snipmate.vim'
 Plugin 'sjl/tslime.vim'
@@ -24,6 +25,7 @@ Plugin 'tpope/vim-rails'
 Plugin 'jgdavey/vim-turbux'
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+Plugin 'mrtazz/simplenote.vim'
 
 call vundle#end()
 
