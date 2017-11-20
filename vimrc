@@ -1,193 +1,93 @@
-set t_Co=256
-set nocompatible
-filetype off
+" Specify a directory for plugins
+call plug#begin('~/.local/share/nvim/plugged')
 
-" Add untracked machine-local vim path
-let &rtp = "~/.vim.local,".&rtp
-set rtp+=~/.vim.local
+" Make sure you use single quotes
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'gregsexton/gitv'
+Plug 'nsf/gocode'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'Zabanaa/neuromancer.vim'
+Plug 'tomtom/tcomment_vim'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'tpope/vim-fugitive'
+Plug 'fatih/vim-go'
+Plug 'Valloric/YouCompleteMe'
 
-set rtp+=~/.vim/bundle/Vundle.vim
-
-" set the runtime path to include Vundle and initialize
-call vundle#begin()
-
-" Plugins. :PluginInstall to install
-Plugin 'VundleVim/Vundle.vim' " Let Vundle manage Vundle
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'bling/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'scrooloose/nerdcommenter.git'
-Plugin 'msanders/snipmate.vim'
-Plugin 'sjl/tslime.vim'
-Plugin 'tpope/vim-endwise'
-Plugin 'tmhedberg/matchit'
-Plugin 'tpope/vim-rails'
-Plugin 'jgdavey/vim-turbux'
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'mrtazz/simplenote.vim'
-
-call vundle#end()
+" Initialize plugin system
+call plug#end()
+" :PlugInstall will install plugins
 
 let mapleader = "\\"
 
-syntax on
-" colorscheme candycode
-" colorscheme Tomorrow-Night-Bright
-" colorscheme vividchalk
-colorscheme vibrantink
-highlight LineNr        guifg=#cccccc ctermfg=Gray
+""""""""""""""""""""
+" fzf / File-finding
+""""""""""""""""""""
+autocmd! User FzfStatusLine call <SID>fzf_statusline()
 
-" Let unsaved buffers exist in the background.
-set hidden
+" Mapping selecting Mappings
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
 
-" Highlight current row.
-set cursorline
+" Shortcuts
+nnoremap <Leader>p :Files<CR> 
+nnoremap <Leader>P :CtrlP<CR>
+nnoremap <Leader>w :w<CR>
 
-" no wrapping
-set nowrap
+" Insert mode completion
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
 
-" Show typed command prefixes while waiting for operator.
-set showcmd
 
-" Don't time out during commands.
-set notimeout
 
-" always show statusline
-set laststatus=2
+set background=dark " for the dark version
+colorscheme neuromancer
+let g:airline_theme = 'bubblegum'
+let g:airline#extensions#whitespace#enabled = 0
 
-filetype plugin on
-filetype indent on
+" Note, the above line is ignored in Neovim 0.1.5 above, use this line instead.
+set termguicolors
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 " Don't prompt for file changes outside vim
 set autoread
 
-"strip trailing whitespace on save for code files
-function! StripTrailingWhitespace()
-  let save_cursor = getpos(".")
-  %s/\s\+$//e
-  call setpos('.', save_cursor)
-endfunction
-" rails
-autocmd BufWritePre *.rb,*.yml,*.js,*.css,*.less,*.sass,*.scss,*.html,*.xml,*.erb,*.haml call StripTrailingWhitespace()
-" misc
-autocmd BufWritePre *.java,*.php,*.feature call StripTrailingWhitespace()
+" show a grey column at column 81
+hi ColorColumn guifg=cyan guibg=default
+set colorcolumn=80
 
-" highlight JSON files as javascript
-autocmd BufRead,BufNewFile *.json set filetype=javascript
+" Start scrolling when the cursor is within 3 lines of the edge.
+set scrolloff=5
+" Scroll faster.
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
 
-" Show whitespace, fullstops for trailing whitespace
-set list
-set listchars=trail:·
-
-function! FancyTabChar()
-  set list lcs=tab:\ \ 
-endfunction
-" autocmd FileType otl call FancyTabChar()
-
-autocmd BufRead,BufNewFile *.otl call FancyTabChar()
-
-" Swapfiles
-set swapfile
-
-" Keep swap and backup files somewhere else
-set directory=~/.vim-tmp,~/tmp,/var/tmp,/tmp
-set backupdir=~/.vim-tmp,~/tmp,/var/tmp,/tmp
-
-" history size
+set backspace=2
+" History Size
 set history=1024
 
-" incremental search
+" Incremental Search
 set hlsearch
 set incsearch
 set smartcase
 
-" show matching brackets
-set showmatch
-
-" tab settings
+" Tab Settings
 set tabstop=2
 set smarttab
 set shiftwidth=2
 set autoindent
 set expandtab
 
-" tab completion
-set wildchar=<Tab>
-set wildmode=full
-set wildignore+=*.o,*.obj,.git,*/.git/*,*.rbc,.svn
-set wildmenu
-
-" Allow backspace to work more flexibly.
-set backspace=2
-
-" set question mark to be part of a VIM word. in Ruby it is!
-autocmd FileType ruby set iskeyword=@,48-57,_,?,!,192-255
-autocmd FileType scss set iskeyword=@,48-57,_,-,?,!,192-255
-
-" Write all writeable buffers when changing buffers or losing focus.
-autocmd BufLeave,FocusLost * silent! wall
-set autowriteall
-
-" Start scrolling when the cursor is within 3 lines of the edge.
-set scrolloff=3
-
-" Scroll faster.
-nnoremap <C-e> 3<C-e>
-nnoremap <C-y> 3<C-y>
-
-" folding
-set foldmethod=indent
-set foldnestmax=2
-set foldlevel=1
-" zz to toggle folds
-map z` :set foldmethod=indent<cr>
-
 " tab shortcuts
 map <C-t><C-p> :tabprev<cr>
 map <C-t><C-n> :tabnext<cr>
-map <C-t><C-t> :tabnew<cr>:CtrlP<cr>
+map <C-t><C-t> :tabnew<cr>:Files<cr>
 map <C-t><C-w> :tabclose<cr>
-
-" show tab number
-if exists("+showtabline")
-  function MyTabLine()
-    let s = ''
-    let t = tabpagenr()
-    let i = 1
-    while i <= tabpagenr('$')
-    let buflist = tabpagebuflist(i)
-      let winnr = tabpagewinnr(i)
-      let s .= '%' . i . 'T'
-      let s .= (i == t ? '%1*' : '%2*')
-    let s .= ' '
-      let s .= i
-      let s .= ' %*'
-      let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
-      let file = bufname(buflist[winnr - 1])
-      let file = fnamemodify(file, ':p:t')
-      if file == ''
-        let file = '[No Name]'
-    endif
-      let s .= file
-      let i = i + 1
-    endwhile
-    let s .= '%T%#TabLineFill#%='
-    let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
-    return s
-  endfunction
-  set stal=2
-  set tabline=%!MyTabLine()
-endif
-
-
-" show a grey column at column 81
-set colorcolumn=80
-highlight ColorColumn ctermbg=black
-set winwidth=82
-
-" Add new windows towards the right and bottom.
-set splitbelow splitright
 
 map <Space> :noh<cr>
 imap kj <Esc>:w<cr>
@@ -195,40 +95,6 @@ imap kj <Esc>:w<cr>
 map <Leader>p :CtrlPClearCache<CR>
 set pastetoggle=<leader><space>
 
-" use c-p/c-n to go up and down the list 
-" to select alternate files in ctrlp
-let g:ctrlp_prompt_mappings = {
-      \ 'PrtHistory(-1)':       ['<c-j>', '<up>'],
-      \ 'PrtHistory(1)':        ['<c-k>', '<down>'],
-      \ 'PrtSelectMove("j")':   ['<c-n>'],
-      \ 'PrtSelectMove("k")':   ['<c-p>']
-      \ }
-
-
 " line numbers
 set number
-
-" relative line numbers
-"set rnu
-":au FocusLost * :set number
-":au FocusGained * :set relativenumber
-"autocmd InsertEnter * :set number
-"autocmd InsertLeave * :set relativenumber
 set numberwidth=5
-
-function! NumberToggle()
-  if(&relativenumber == 1)
-    set number
-  else
-    set relativenumber
-  endif
-endfunc
-
-nnoremap <C-h> :call NumberToggle()<cr>
-nnoremap <Leader>v :vsp<cr>:CtrlP<cr>
-
-let g:airline_powerline_fonts = 1
-let g:airline_theme = 'kolor'
-let g:airline#extensions#whitespace#enabled = 0
-
-map <C-n> :NERDTreeToggle<CR>
