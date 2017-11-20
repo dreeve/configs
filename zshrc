@@ -17,7 +17,4 @@ alias vim=nvim
 export PATH="/usr/local/opt/python/libexec/bin:/usr/local/bin:$PATH:$(go env GOPATH)/bin"
 . /usr/local/etc/profile.d/z.sh
 
-source /usr/local/opt/chruby/share/chruby/auto.sh
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-
 alias gst="git status"
