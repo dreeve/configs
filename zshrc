@@ -18,3 +18,21 @@ export PATH="/usr/local/opt/python/libexec/bin:/usr/local/bin:$PATH:$(go env GOP
 . /usr/local/etc/profile.d/z.sh
 
 alias gst="git status"
+alias be="bundle exec"
+export EDITOR=vim
+export GIT_EDITOR=vim
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+folder_to_dmg() {
+  if [ -z "$1" ]; then
+    echo "Usage: $0 /path/to/folder"
+    exit 1
+  fi
+  
+  folder=$1
+  folder_size=$(du -sm $folder | cut -f1)
+  vol_name="$(basename $folder)"
+  
+  hdiutil create -fs HFS+ -encryption -volname "$vol_name" -srcfolder "$folder" "$folder.dmg"
+}
