@@ -16,12 +16,12 @@ that, I need to enumerate the steps it takes!
 * `ln -s $CONFIG_DIR/zshrc.shared ~/.zshrc.shared`
 * `touch $HOME/.zshrc.local`
 * Source shared zshrc from prezto's zshrc
-```
-echo '
-source "$HOME/.zshrc.shared"
-source "$HOME/.zshrc.local"
-' >> $HOME/.zshrc
-```
+  ```
+  echo '
+  source "$HOME/.zshrc.shared"
+  source "$HOME/.zshrc.local"
+  ' >> $HOME/.zshrc
+  ```
 
 
 ### vim
