@@ -1,7 +1,11 @@
-[include]
-  path = ~/.gitconfig.local
+[alias]
+  ci = commit
+  co = checkout
 [core]
-  excludesfile = ~/.gitignore
+  pager = diff-so-fancy | less --tabs=4 -RFX
+  excludesfile = ~/.gitignore_global
+[push]
+  default = current
 [color]
   ui = auto
   pager = true
@@ -10,23 +14,15 @@
   changed = green
   untracked = cyan
   ui = true
-[alias]
-  co = checkout
-  ci = commit
-  st = status
-  di = diff
-  br = branch
-  sta = stash
-  llog = log --date=local 
-  # log display with traintracks.
-  g = log --graph --pretty=format':%C(yellow)%h%Creset %s %C(cyan) %an%Creset (%ar)' --date=local --decorate
-  l = log --pretty=format':%C(green)%C(bold)%h%C(cyan)%Creset %s %C(cyan)%aN%Creset (%ar)' --date=local --decorate
-  # alternate log display from Scott Chacon
-  lol = log --pretty=oneline --abbrev=commit --graph --decorate --date=local
-  type = cat-file -t
-  dump = cat-file -p
-  fullhashlog = "log --graph --abbrev-commit '--format=format:%H %C(yellow)%ci%Creset %Cgreen%an%Creset | %s'"
-  w = whatchanged
-  unpushed = !"PROJ_BRANCH=$(git symbolic-ref HEAD | sed 's|refs/heads/||') && git log origin/$PROJ_BRANCH..HEAD"
-[push]
-  default = current
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
+[color "diff"]
+  meta = yellow
+  frag = magenta bold
+  commit = yellow bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse

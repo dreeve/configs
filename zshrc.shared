@@ -1,0 +1,44 @@
+alias vim='nvim'
+export EDITOR='nvim'
+export BUNDLER_EDITOR='nvim'
+export GIT_EDITOR='nvim'
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias gst='git status --short'
+alias st='git status --short'
+alias gpl='git pull -r'
+alias gpr='git pull -r'
+alias gsh='git show'
+alias gdc='git diff --cached'
+alias d='git diff'
+alias gca='git commit --amend --no-edit'
+alias gl="git log --pretty=format:'%C(blue)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit -10"
+alias lg="gl"
+
+function wip() {
+  branch_name="$(git symbolic-ref HEAD 2>/dev/null)"
+  case "$branch_name" in
+    'refs/heads/master')
+      echo "This is master; maybe check out a new branch with a nice name?"
+      ;;
+    '')
+      echo "This doesn't appear to be a git directory."
+      ;;
+    *)
+      git add .
+      git commit -m "WIP"
+      ;;
+  esac
+}
+
+alias be='bundle exec'
+alias bake='bundle exec rake'
+
+alias hi='ag --passthru --color-match "30;46"'
+
+# Never ask me "Did you mean...?" again. >:|
+unsetopt correct
+unsetopt correctall
+DISABLE_CORRECTION="true"
+
