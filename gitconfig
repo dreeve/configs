@@ -7,6 +7,8 @@
 	commentChar = %
 [push]
   default = current
+  excludesfile = ~/.gitignore
+  editor = vim
 [color]
   ui = auto
   pager = true
