@@ -1,37 +1,40 @@
 " Specify a directory for plugins
 call plug#begin('~/.local/share/nvim/plugged')
 
-" -------- Plugins
+" ---------------------------------------------------------------------- Plugins
 " Use :PlugInstall to install plugins
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-endwise'
 Plug 'tomtom/tcomment_vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 Plug 'ajh17/VimCompletesMe'
+Plug 'dhruvasagar/vim-zoom'
+Plug 'nelstrom/vim-visual-star-search'
+Plug 'mtth/scratch.vim'
+Plug 'vim-pandoc/vim-markdownfootnotes'
 
 " Plugins that interact with other applications
 Plug 'janko-m/vim-test'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'gabesoft/vim-ags'
-Plug 'ludovicchabant/vim-gutentags'
+Plug 'rizzatti/dash.vim'
+Plug 'mhinz/vim-signify'
 
 " Plugins that are language-specific
 Plug 'nsf/gocode'
 Plug 'fatih/vim-go'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rake'
-Plug 'thoughtbot/vim-rspec'
+Plug 'tpope/vim-markdown'
 
 " Themes
 Plug 'jacoborus/tender.vim'
-Plug 'rakr/vim-colors-rakr'
-Plug 'rakr/vim-two-firewatch'
-Plug 'vim-scripts/moria'
-Plug 'xero/sourcerer.vim'
-Plug 'christophermca/meta5'
+Plug 'nanotech/jellybeans.vim'
+Plug 'drewtempelmeyer/palenight.vim'
+Plug 'mhartington/oceanic-next'
 
 " Initialize plugin system
 call plug#end()
@@ -40,9 +43,8 @@ call plug#end()
 " Colors, themes, and UI settings
 
 set background=dark
-colorscheme moria
-let g:airline_theme = 'bubblegum' "let g:airline_theme = 'bubblegum'
-let g:airline#extensions#whitespace#enabled = 0
+colorscheme palenight
+let g:lightline = { 'colorscheme': 'palenight' }
 
 set termguicolors
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -51,8 +53,12 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 hi ColorColumn guifg=cyan guibg=default
 set colorcolumn=80
 
+highlight Comment ctermfg=888888
+highlight LineNr ctermfg=888888
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
-" -------- Settings
+
+" --------------------------------------------------------------------- Settings
 
 " Don't prompt for file changes outside vim
 set autoread
@@ -94,40 +100,70 @@ set scrolloff=5
 
 " Line Numbers
 set number
-set numberwidth=5
+set numberwidth=3
 set nowrap
 
 " Folding
-set foldmethod=syntax
-set foldlevel=99
+set foldmethod=manual
+" set foldlevel=99
+
+" Markdown options
+autocmd FileType markdown setlocal nospell
+set conceallevel=2
+set concealcursor="nc"
+
+" ctrlp
+let g:ctrlp_working_path_mode = 0  " Allows ctrlp to change base directory
+let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
+" Use rg for ctrlp file indexing
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
+endif
+
+let g:signify_vcs_list = [ 'git' ]
+
+" Exclude Javascript files in :Rtags via rails.vim due to warnings when parsing
+" (source: thoughtbot's dotfiles)
+let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
 
 
-" -------- Mappings
+" --------------------------------------------------------------------- Mappings
+
+" Set leader to backslash
+let mapleader = "\\"
+
+" Space in normal mode does :nohighlight and saves the file
+nmap <Space> :noh<CR>:w<CR>:echo ''<CR>
+
+" F3 to open vimrc in a new tab
+nmap <F3> :tabe $MYVIMRC<cr>
+" F4 to reindex tags
+nmap <F4> :call ReindexCtags()<cr>
+
+" Copy to system clipboard
+noremap <Leader>y "*y
+noremap Y "*y
+noremap <Leader>p "*p
+noremap <Leader>P "*p
 
 " Scroll faster.
 nnoremap <C-e> 5<C-e>
 nnoremap <C-y> 5<C-y>
 
-" tab shortcuts
+" Tab Management
 map <C-t><C-p> :tabprev<cr>
 map <C-t><C-n> :tabnext<cr>
 map <C-t><C-t> :tabnew<cr>:CtrlP<cr>
 map <C-t><C-w> :tabclose<cr>
 
-" Set leader to backslash
-let mapleader = "\\"
-map <Space> :noh<cr>
-
+" File Management / ctrlp / NERDtree
 map <Leader>p :CtrlPClearCache<CR>
 map <Leader>v :vsp<CR>:CtrlP<CR>
-let g:ctrlp_custom_ignore = 'node_modules\|DS_Store\|git'
-if executable('rg')
-  set grepprg=rg--color=never
-  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-  let g:ctrlp_use_caching = 0
-endif
-
+map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 map <Leader>n :NERDTreeToggle<CR>
+map <Leader>f :NERDTreeFind %<CR>
 
 " vim-test
 nmap <silent> <Leader>t :TestNearest<CR>
@@ -139,8 +175,37 @@ if has('nvim')
   tmap <C-o> <C-\><C-n>
 end
 
-" Hit F1 to open vimrc in a new tab
-nmap <F1> :tabe $MYVIMRC<cr>
+" vim-fugitive
+nmap <Leader>g :Gblame<CR>
+nmap <Leader>d :Gdiff<CR>
 
+" searching / vim-ags
 " Map leader slash to search for text under cursor
 nnoremap <leader>/ :exe 'Ags' expand('<cword>')<cr>
+
+" Jump to previous buffer
+nnoremap <Leader><Leader> <C-^>
+
+
+" -------------------------------------------------------------------- Functions
+
+" Index ctags from any project, including those outside Rails
+function! ReindexCtags()
+  let l:ctags_hook = '$(git rev-parse --show-toplevel)/.git/hooks/ctags'
+
+  if exists(l:ctags_hook)
+    exec '!'. l:ctags_hook
+  else
+    exec "!ctags -R --exclude='*.js' ."
+  endif
+endfunction
+
+" Automatically save/load folds
+augroup AutoSaveFolds
+  autocmd!
+  " view files are about 500 bytes
+  " bufleave but not bufwinleave captures closing 2nd tab
+  " nested is needed by bufwrite* (if triggered via other autocmd)
+  autocmd BufWinLeave,BufLeave,BufWritePost ?* nested silent! mkview!
+  autocmd BufWinEnter ?* silent! loadview
+augroup end

@@ -1,21 +1,63 @@
-alias vim='nvim'
+# ---------------------------------------------------------------------- Options
+# Never ask me "Did you mean...?" again. >:|
+unsetopt correct
+unsetopt correctall
+DISABLE_CORRECTION="true"
+
+
+# Stop verifying I meant $! when I meant $!
+# I can still hit tab to expand it, the confirmation seems silly
+setopt no_histverify
+
+
+# -------------------------------------------------------------------- Variables
 export EDITOR='nvim'
 export BUNDLER_EDITOR='nvim'
 export GIT_EDITOR='nvim'
+export REF="$HOME/ref"
 
+
+# ------------------------------------------------------------- External Scripts
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-alias gst='git status --short'
+## Z: https://github.com/rupa/z
+. /usr/local/etc/profile.d/z.sh
+
+
+# ---------------------------------------------------------------------- Aliases
+alias s='exa'
+alias l='exa'
+alias cat="bat"
+
+alias vim='nvim'
+alias v=vim
+alias vi=vim
+
+alias be='bundle exec'
+alias bake='bundle exec rake'
+
+alias hi='ag --passthru --color-match "30;46"'
+
+alias refcat=catref
+
+# git aliases
+alias gca='git commit --amend --no-edit'
+alias d='git diff'
+alias gdc='git diff --cached'
 alias st='git status --short'
-alias gpl='git pull -r'
+alias sc='git status'
+alias gst='git stash'
+alias gpm='git stash; git co master; git pull -r'
 alias gpr='git pull -r'
 alias gsh='git show'
-alias gdc='git diff --cached'
-alias d='git diff'
-alias gca='git commit --amend --no-edit'
-alias gl="git log --pretty=format:'%C(blue)%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(cyan)<%an>%Creset' --abbrev-commit -10"
-alias lg="gl"
+alias dbr='git branch -D '
+alias gl="git log --pretty=format:'%C(cyan)%h%Creset %s %C(white)<%an>%Creset' --abbrev-commit -10 --no-merges --since=1.day"
+alias lg="git log -2"
 
+# `gh` opens the current project in the browser (without `hub`)
+alias gh="open \`git remote -v | grep git@github.com | grep fetch | head -1 | cut -f2 | cut -d' ' -f1 | sed -e's/:/\//' -e 's/git@/http:\/\//'\`"
+
+# -------------------------------------------------------------------- Functions
 function wip() {
   branch_name="$(git symbolic-ref HEAD 2>/dev/null)"
   case "$branch_name" in
@@ -26,19 +68,39 @@ function wip() {
       echo "This doesn't appear to be a git directory."
       ;;
     *)
-      git add .
       git commit -m "WIP"
       ;;
   esac
 }
 
-alias be='bundle exec'
-alias bake='bundle exec rake'
+function daylog() {
+  # date +"%Y %m/%Y-%m-%d.txt"
 
-alias hi='ag --passthru --color-match "30;46"'
+  ref_dir=$HOME/ref
+  month_folder=$(date +"%Y %m")
+  full_month_path=$ref_dir/"$month_folder"
+  echo $full_month_path
+  mkdir -p $ref_dir/"$month_folder"
+  journal_filename=$(date -v -Mon +"%Y-%m-%d.md")
 
-# Never ask me "Did you mean...?" again. >:|
-unsetopt correct
-unsetopt correctall
-DISABLE_CORRECTION="true"
+  pushd $ref_dir/"$month_folder"
+    nvim $journal_filename -c "cd /Users/derekreeve/ref"
+  popd
+}
 
+function refs() {
+  rg $1 $REF
+}
+
+function findrefs() {
+  find ref -name "*${1}*"
+}
+
+function ref() {
+  find $REF -name "*${1}*" -execdir printf "{}:\t" \; -execdir head -n1 {} \;
+}
+
+function catref() {
+  found_filepath=$(find $HOME/ref -name "*${1}*" | head -n1)
+  bat $found_filepath
+}

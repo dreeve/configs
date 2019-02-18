@@ -4,6 +4,7 @@
 [core]
   pager = diff-so-fancy | less --tabs=4 -RFX
   excludesfile = ~/.gitignore_global
+	commentChar = %
 [push]
   default = current
 [color]
@@ -26,3 +27,9 @@
   old = red bold
   new = green bold
   whitespace = red reverse
+[user]
+	name = Derek Reeve
+[pull]
+	rebase = true
+[rebase]
+	autosquash = true
