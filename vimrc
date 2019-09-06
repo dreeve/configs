@@ -31,10 +31,11 @@ Plug 'tpope/vim-rake'
 Plug 'tpope/vim-markdown'
 
 " Themes
-Plug 'jacoborus/tender.vim'
 Plug 'nanotech/jellybeans.vim'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'mhartington/oceanic-next'
+Plug 'chriskempson/base16-vim'
+Plug 'zeis/vim-kolor'
 
 " Initialize plugin system
 call plug#end()
@@ -43,8 +44,10 @@ call plug#end()
 " Colors, themes, and UI settings
 
 set background=dark
-colorscheme palenight
-let g:lightline = { 'colorscheme': 'palenight' }
+colorscheme base16-eighties
+let g:lightline = {
+	\ 'colorscheme': 'Tomorrow_Night_Eighties',
+	\ }
 
 set termguicolors
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -56,7 +59,6 @@ set colorcolumn=80
 highlight Comment ctermfg=888888
 highlight LineNr ctermfg=888888
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
-
 
 " --------------------------------------------------------------------- Settings
 
@@ -108,6 +110,7 @@ set foldmethod=manual
 " set foldlevel=99
 
 " Markdown options
+highlight clear markdownCodeBlock  " Don't highlight every line starting with 4 spaces.
 autocmd FileType markdown setlocal nospell
 set conceallevel=2
 set concealcursor="nc"
