@@ -88,6 +88,17 @@ function daylog() {
   journal_filename=$(date -v -Mon +"%Y-%m-%d.md")
 
   pushd $ref_dir/"$month_folder"
+    if [ -s $journal_filename ]; then
+      echo "file is not empty, not creating headings"
+    else
+      echo "# Monday\n" >> $journal_filename
+      echo "# Tuesday\n" >> $journal_filename
+      echo "# Wednesday\n" >> $journal_filename
+      echo "# Thursday\n" >> $journal_filename
+      echo "# Friday\n" >> $journal_filename
+      echo "# next week\n" >> $journal_filename
+    fi
+
     nvim $journal_filename -c "cd /Users/derekreeve/ref"
   popd
 }
@@ -100,13 +111,37 @@ function findrefs() {
   find ref -name "*${1}*"
 }
 
-function ref() {
+function refsearch() {
   find $REF -name "*${1}*" -execdir printf "{}:\t" \; -execdir head -n1 {} \;
 }
 
 function catref() {
   found_filepath=$(find $HOME/ref -name "*${1}*" | head -n1)
   bat $found_filepath
+}
+
+alias refcat=catref
+
+function ref() {
+  mkdir -p "$REF/00 To Review"
+  local subdirectory="$REF/00 To Review"
+  local filename=$(date +"%Y-%m-%d %H")
+  local extension="md"
+
+  if [ "$#" -gt 0 ]; then
+    case "$1" in
+      t)
+        subdirectory=$REF
+        extension="txt"
+        filename="${@:2}"
+        ;;
+      *)
+        subdirectory=$REF
+        filename="$*"
+    esac
+  fi
+
+  $EDITOR "$subdirectory/$filename.$extension"
 }
 
 function unfinished() {
