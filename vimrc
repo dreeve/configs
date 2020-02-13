@@ -14,6 +14,7 @@ Plug 'dhruvasagar/vim-zoom'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'mtth/scratch.vim'
 Plug 'vim-pandoc/vim-markdownfootnotes'
+Plug 'vimwiki/vimwiki'
 
 " Plugins that interact with other applications
 Plug 'janko-m/vim-test'
@@ -61,6 +62,9 @@ highlight LineNr ctermfg=888888
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 " --------------------------------------------------------------------- Settings
+
+" vimwiki
+let g:vimwiki_list = [{'path': '~/ref/', 'syntax': 'markdown', 'ext': '.md'}]
 
 " Don't prompt for file changes outside vim
 set autoread
@@ -131,6 +135,8 @@ let g:signify_vcs_list = [ 'git' ]
 " (source: thoughtbot's dotfiles)
 let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
 
+set expandtab
+
 
 " --------------------------------------------------------------------- Mappings
 
@@ -138,7 +144,7 @@ let g:Tlist_Ctags_Cmd="ctags --exclude='*.js'"
 let mapleader = "\\"
 
 " Space in normal mode does :nohighlight and saves the file
-nmap <Space> :noh<CR>:w<CR>:echo ''<CR>
+nmap <Space> :noh<CR>:retab<CR>:w<CR>:echo ''<CR>
 
 " F3 to open vimrc in a new tab
 nmap <F3> :tabe $MYVIMRC<cr>
@@ -181,6 +187,7 @@ end
 " vim-fugitive
 nmap <Leader>g :Gblame<CR>
 nmap <Leader>d :Gdiff<CR>
+set diffopt+=vertical
 
 " searching / vim-ags
 " Map leader slash to search for text under cursor
