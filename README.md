@@ -1,21 +1,18 @@
 # A collection of configuration files
 
-## Setup Instructions for a new machine
-At some point I'll make this into a nice little configuration script. But before
-that, I need to enumerate the steps it takes!
-
 *Either replace `$CONFIG_DIR` below with this directory's path or set the 
   `$CONFIG_DIR` environment variable.*
 
+This assumes [Homebrew](https://brew.sh) is installed and working.
 
 ### zsh
 * Install GNU Coreutils to enable better ls colors.
   * `brew install coreutils`
 * Install [prezto](https://github.com/sorin-ionescu/prezto#installation)
-* `ln -s $HOME/.zprezto/runcoms/zshrc $HOME/.zshrc`
-* `ln -s $CONFIG_DIR/zshrc.shared ~/.zshrc.shared`
+  * `ln -s $HOME/.zprezto/runcoms/zshrc $HOME/.zshrc`
+  * `ln -s $CONFIG_DIR/zshrc.shared ~/.zshrc.shared`
 * `touch $HOME/.zshrc.local`
-* Source shared zshrc from prezto's zshrc
+* Source shared and local zshrc from prezto/the system's zshrc
   ```
   echo '
   source "$HOME/.zshrc.shared"
@@ -38,3 +35,6 @@ that, I need to enumerate the steps it takes!
 ### tmux
 * `ls -s $CONFIG_DIR/tmux.conf ~/.tmux.conf`
 
+### font
+
+In case I forget, I've been using [Source Code Pro](https://github.com/adobe-fonts/source-code-pro).
