@@ -91,6 +91,7 @@ function daylog() {
     if [ -s $journal_filename ]; then
       echo "file is not empty, not creating headings"
     else
+      touch $journal_filename
       echo "# Monday\n" >> $journal_filename
       echo "# Tuesday\n" >> $journal_filename
       echo "# Wednesday\n" >> $journal_filename
