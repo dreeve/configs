@@ -22,9 +22,10 @@ This assumes [Homebrew](https://brew.sh) is installed and working.
 
 
 ### vim
+* Install [vim-plug](https://github.com/junegunn/vim-plug)
 * `ln -s $CONFIG_DIR/vimrc ~/.config/nvim/init.vim`
-* `vim +PluginInstall +qall` will install plugins
-  * You can also install vim plugins by running vim and executing `:PluginInstall`
+* `vim +PlugInstall +qall` will install plugins
+  * You can also install vim plugins by running vim and executing `:PlugInstall`
 * `ln -sf $CONFIG_DIR/ruby.snippets ~/.vim/bundle/snipmate.vim/snippets/`
 
 
